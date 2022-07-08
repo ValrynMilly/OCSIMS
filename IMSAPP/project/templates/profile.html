@@ -1,7 +1,35 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="title">
-  Welcome, {{ name }}!
-</h1>
+<div class="columns">
+
+
+  <div class="column is-one-fifth">
+  
+    <aside class="menu">
+      <p class="menu-label">
+        General
+      </p>
+      <ul class="menu-list">
+        <li><a>Laptops</a></li>
+        <li><a>Desktops</a></li>
+        <li><a>Mobile Phones</a></li>
+        <li><a>Sim Cards</a></li>
+        <li><a>Accessories</a></li>
+      </ul>
+    </aside>
+  
+  </div>
+  
+  <div class="column">
+  
+    <div>
+    <h1 class="block"> Welcome, <strong>{{ name }}!</strong>. </h1>  
+    </div>
+
+      <h4>
+      Here OSS can track, add, remove and assign stock content within the company. This software is more of a simplified easy to use client services tool for OSS teams to keep track of everything rather than writing it all on a whiteboard somewhere within the office or having to navigate all over Datto & Endpoint.
+      </h4>
+
+  </div>
 {% endblock %}
