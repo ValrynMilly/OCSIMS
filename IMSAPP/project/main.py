@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template
 from flask_login import login_required, current_user
 from . import db
+from .models import Laptops
 
 main = Blueprint('main', __name__)
 
@@ -12,3 +13,9 @@ def index():
 @login_required
 def profile():
     return render_template('profile.html', name=current_user.name)
+
+@main.route('/laptops')
+@login_required
+def laptops():
+    laptop = Laptops.query
+    return render_template('laptops.html', laptop=laptop)

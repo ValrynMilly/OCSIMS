@@ -1,0 +1,51 @@
+{% extends "profile.html" %}
+
+{% block content %}
+
+  <div class="column is-one-fifth">
+  
+    <aside class="menu">
+      <p class="menu-label">
+        General
+      </p>
+      <ul class="menu-list">
+        <li><a>Laptops</a></li>
+        <li><a>Desktops</a></li>
+        <li><a>Mobile Phones</a></li>
+        <li><a>Sim Cards</a></li>
+        <li><a>Accessories</a></li>
+      </ul>
+    </aside>
+  
+  </div>
+
+  <table id="data" class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Manufacturer</th>
+        <th>Model</th>
+        <th>CPU</th>
+        <th>RAM</th>
+        <th>Storage</th>
+        <th>Operating System</th>
+        <th>Assigned?</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for la in laptop %}
+        <tr>
+          <td>{{ la.id }}</td>
+          <td>{{ la.manufactor }}</td>
+          <td>{{ la.model }}</td>
+          <td>{{ la.cpu }}</td>
+          <td>{{ la.ram }}</td>
+          <td>{{ la.storage }}</td>
+          <td>{{ la.operating_system }}</td>
+          <td>{{ la.assigned }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+{% endblock %}
