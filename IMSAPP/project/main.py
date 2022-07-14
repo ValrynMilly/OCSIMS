@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template
+from urllib import request
+from flask import Blueprint, render_template, request
 from flask_login import login_required, current_user
 from . import db
 from .models import Laptops
@@ -14,7 +15,7 @@ def index():
 def profile():
     return render_template('profile.html', name=current_user.name)
 
-@main.route('/laptops')
+@main.route('/laptops', methods=['POST', 'GET'])
 @login_required
 def laptops():
     laptop = Laptops.query

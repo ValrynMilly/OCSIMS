@@ -2,50 +2,82 @@
 
 {% block content %}
 
-  <div class="column is-one-fifth">
-  
-    <aside class="menu">
-      <p class="menu-label">
-        General
-      </p>
-      <ul class="menu-list">
-        <li><a>Laptops</a></li>
-        <li><a>Desktops</a></li>
-        <li><a>Mobile Phones</a></li>
-        <li><a>Sim Cards</a></li>
-        <li><a>Accessories</a></li>
-      </ul>
-    </aside>
-  
+  <div class="column is-narrow">
+    <div class="column is-half">
+      <aside class="menu">
+        <p class="menu-label">
+          General
+        </p>
+        <ul class="menu-list">
+          <li><a>Laptops</a></li>
+          <li><a>Desktops</a></li>
+          <li><a>Mobile Phones</a></li>
+          <li><a>Sim Cards</a></li>
+          <li><a>Accessories</a></li>
+        </ul>
+      </aside>
+    </div>
   </div>
 
-  <table id="data" class="table table-striped">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Manufacturer</th>
-        <th>Model</th>
-        <th>CPU</th>
-        <th>RAM</th>
-        <th>Storage</th>
-        <th>Operating System</th>
-        <th>Assigned?</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for la in laptop %}
-        <tr>
-          <td>{{ la.id }}</td>
-          <td>{{ la.manufactor }}</td>
-          <td>{{ la.model }}</td>
-          <td>{{ la.cpu }}</td>
-          <td>{{ la.ram }}</td>
-          <td>{{ la.storage }}</td>
-          <td>{{ la.operating_system }}</td>
-          <td>{{ la.assigned }}</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  
+    
+      </div class="section">
+          <table class="table is-hoverable is-fullwidth" style="margin-bottom:20px; margin-right: 20%;">
+            <thead>
+              <tr>
+                <th><abbr title="Position">ID</abbr></t h>
+                <th>Manufacturer</th>
+                <th><abbr title="Played">Model</abbr></th>
+                <th><abbr title="Won">CPU</abbr></th>
+                <th><abbr title="Drawn">RAM</abbr></th>
+                <th><abbr title="Lost">Storage</abbr></th>
+                <th><abbr title="Goals for">Operating System</abbr></th>
+                <th><abbr title="Goals against">Assigned</abbr></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for la in laptop %}
+                <tr>
+                  <td>{{ la.id }}</td>
+                  <td>{{ la.manufactor }}</td>
+                  <td>{{ la.model }}</td>
+                  <td>{{ la.cpu }}</td>
+                  <td>{{ la.ram }}</td>
+                  <td>{{ la.storage }}</td>
+                  <td>{{ la.operating_system }}</td>
+                  <td>{{ la.assigned }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+            <form action="">
+              <td>
+                <label class="checkbox">
+                  <input type="checkbox" disabled>
+                </label> 
+              </td>
+              <td>
+                <input class="input is-info is-narrow" type="text" placeholder="Info input">
+              </td>
+              <td>
+                <input class="input is-info is-narrow" type="text" placeholder="Info input">
+              </td>
+              <td>
+                <input class="input is-info is-narrow" type="text" placeholder="Info input">
+              </td>
+              <td>
+                <input class="input is-info is-narrow" type="text" placeholder="Info input">
+              </td>
+              <td>
+                <input class="input is-info is-narrow" type="text" placeholder="Info input">
+              </td>
+              <td>
+                <input class="input is-info is-narrow" type="text" placeholder="Info input">
+              </td>
+              <td>
+                <input class="input is-info is-narrow" type="text" placeholder="Info input">
+              </td>
+            </form>
+          </table>
+      </div>
+
+
 {% endblock %}
