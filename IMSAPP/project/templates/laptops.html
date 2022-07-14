@@ -24,14 +24,15 @@
           <table class="table is-hoverable is-fullwidth" style="margin-bottom:20px; margin-right: 20%;">
             <thead>
               <tr>
-                <th><abbr title="Position">ID</abbr></t h>
+                <th><abbr title="ID">#</abbr></t h>
                 <th>Manufacturer</th>
-                <th><abbr title="Played">Model</abbr></th>
-                <th><abbr title="Won">CPU</abbr></th>
-                <th><abbr title="Drawn">RAM</abbr></th>
-                <th><abbr title="Lost">Storage</abbr></th>
-                <th><abbr title="Goals for">Operating System</abbr></th>
-                <th><abbr title="Goals against">Assigned</abbr></th>
+                <th><abbr title="Model">Model</abbr></th>
+                <th><abbr title="CPU">CPU</abbr></th>
+                <th><abbr title="RAM">RAM</abbr></th>
+                <th><abbr title="Storage">Storage</abbr></th>
+                <th><abbr title="Operating_System">Operating System</abbr></th>
+                <th><abbr title="Assigned">Assigned</abbr></th>
+                <th><abbr title="Action">Action</abbr></th>
               </tr>
             </thead>
             <tbody>
@@ -45,13 +46,16 @@
                   <td>{{ la.storage }}</td>
                   <td>{{ la.operating_system }}</td>
                   <td>{{ la.assigned }}</td>
+                  <td>
+                    <button class="button is-danger is-rounded">Delete</button>
+                  </td>
                 </tr>
               {% endfor %}
             </tbody>
             <form action="">
               <td>
                 <label class="checkbox">
-                  <input type="checkbox" disabled>
+                  <disabled>
                 </label> 
               </td>
               <td>
@@ -74,6 +78,9 @@
               </td>
               <td>
                 <input class="input is-info is-narrow" type="text" placeholder="Info input">
+              </td>
+              <td>
+                <button class="button is-info is-rounded">Submit</button>
               </td>
             </form>
           </table>
