@@ -16,4 +16,4 @@ class Laptops(db.Model):
     ram = db.Column(db.String(50))
     storage = db.Column(db.String(50))
     operating_system = db.Column(db.String(50))
-    assigned = db.Column(db.Boolean)
+    assigned = db.Column(db.String(100))

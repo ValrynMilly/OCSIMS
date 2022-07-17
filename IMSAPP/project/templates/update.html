@@ -22,7 +22,7 @@
 
     
       </div class="section">
-          <table class="table is-hoverable is-fullwidth" style="margin-bottom:20px; margin-right: 20%;">
+          <table class="table is-hoverable is-fullwidth" style="margin-bottom:20px; margin-right: 20%;" contenteditable="true">
             <thead>
               <tr>
                 <th><abbr title="ID">#</abbr></t h>
@@ -39,54 +39,41 @@
             <tbody>
               {% for la in laptop %}
                 <tr>
-                  <td>{{ la.id }}</td>
-                  <td>{{ la.manufactor }}</td>
-                  <td>{{ la.model }}</td>
-                  <td>{{ la.cpu }}</td>
-                  <td>{{ la.ram }}</td>
-                  <td>{{ la.storage }}</td>
-                  <td>{{ la.operating_system }}</td>
-                  <td>{{ la.assigned }}</td>
                   <td>
-                    <a href="update/{{ la.id }}">
-                      <button class="button is-success is-rounded">Update</button>
-                    </a>
-                    <a href="delete/{{ la.id }}">
-                      <button class="button is-danger is-rounded">Delete</button>
-                    </a>
+                    <button class="button is-success is-rounded" href="/update{{la.id}}">Save</button>
                   </td>
                 </tr>
               {% endfor %}
             </tbody>
-            <form action="/laptops" method="POST">
+            <form action="/update/{{laptop_update.id}}" method="POST">
               <td>
                 <label class="checkbox">
                   <disabled>
                 </label> 
               </td>
               <td>
-                <input class="input is-info is-narrow" type="text" placeholder="Manufacturer" name="Manufacturer">
+                <input class="input is-info is-narrow" type="text" placeholder="Manufacturer" name="Manufacturer" value="{{laptop_update.manufactor}}">
               </td>
               <td>
-                <input class="input is-info is-narrow" type="text" placeholder="Model" name="Model">
+                <input class="input is-info is-narrow" type="text" placeholder="Model" name="Model" value="{{laptop_update.model}}">
               </td>
               <td>
-                <input class="input is-info is-narrow" type="text" placeholder="CPU" name="CPU">
+                <input class="input is-info is-narrow" type="text" placeholder="CPU" name="CPU" value="{{laptop_update.cpu}}">
               </td>
               <td>
-                <input class="input is-info is-narrow" type="text" placeholder="RAM" name="RAM">
+                <input class="input is-info is-narrow" type="text" placeholder="RAM" name="RAM" value="{{laptop_update.ram}}">
               </td>
               <td>
-                <input class="input is-info is-narrow" type="text" placeholder="Storage" name="Storage">
+                <input class="input is-info is-narrow" type="text" placeholder="Storage" name="Storage" value="{{laptop_update.storage}}">
               </td>
               <td>
-                <input class="input is-info is-narrow" type="text" placeholder="OS" name="Operating_System">
+                <input class="input is-info is-narrow" type="text" placeholder="OS" name="Operating_System" value="{{laptop_update.operating_system}}">
               </td>
               <td>
-                <input class="input is-info is-narrow" type="text" placeholder="Assigned?" name="Assigned">
+                <input class="input is-info is-narrow" type="text" placeholder="Assigned?" name="Assigned" value="{{laptop_update.assigned}}">
               </td>
               <td>
-                <button class="button is-info is-rounded">Submit</button>
+                <button class="button is-info is-rounded">Save</button>
               </td>
             </form>
           </table>
