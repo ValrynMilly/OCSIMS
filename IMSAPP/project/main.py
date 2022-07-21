@@ -17,7 +17,10 @@ def profile():
     laptop_count = Laptops.query.count()
     laptop_assigned = Laptops.query.filter(Laptops.assigned == 'Yes').count()
     laptop_unassigned = Laptops.query.filter(Laptops.assigned == 'No').count()
-    return render_template('profile.html', name=current_user.name, laptop_count=laptop_count, laptop_assigned=laptop_assigned, laptop_unassigned=laptop_unassigned)
+    return render_template('profile.html', name=current_user.name, 
+    laptop_count=laptop_count, 
+    laptop_assigned=laptop_assigned, 
+    laptop_unassigned=laptop_unassigned)
 
 @main.route('/laptops', methods=['POST', 'GET'])
 @login_required
@@ -63,7 +66,9 @@ def update(id):
         laptop_update.ram = request.form['RAM']
         laptop_update.storage = request.form['Storage']
         laptop_update.operating_system = request.form['Operating_System']
-        laptop_update.assigned = request.form['Assigned']
+        laptop_update.mac_address = request.form['Mac_address']
+        laptop_update.assigned = request.form.get('assigned')
+        laptop_update.assigned_to = request.form['Assigned_to']
         try:
             db.session.commit()
             return redirect('/laptops')

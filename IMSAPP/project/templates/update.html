@@ -22,7 +22,7 @@
 
     
       </div class="section">
-          <table class="table is-hoverable is-fullwidth" style="margin-bottom:20px; margin-right: 20%;" contenteditable="true">
+          <table class="table is-hoverable is-bordered is-fullwidth" style="margin-bottom:20px; margin-right: 20%;" contenteditable="true">
             <thead>
               <tr>
                 <th><abbr title="ID">#</abbr></t h>
@@ -32,7 +32,9 @@
                 <th><abbr title="RAM">RAM</abbr></th>
                 <th><abbr title="Storage">Storage</abbr></th>
                 <th><abbr title="Operating_System">Operating System</abbr></th>
-                <th><abbr title="Assigned">Assigned</abbr></th>
+                <th><abbr title="mac_address">Mac Address</abbr></th>
+                <th><abbr title="Assigned">Assigned?</abbr></th>
+                <th><abbr title="Assigned_to">Assigned to</abbr></th>
                 <th><abbr title="Action">Action</abbr></th>
               </tr>
             </thead>
@@ -70,7 +72,21 @@
                 <input class="input is-info is-narrow" type="text" placeholder="OS" name="Operating_System" value="{{laptop_update.operating_system}}">
               </td>
               <td>
-                <input class="input is-info is-narrow" type="text" placeholder="Assigned?" name="Assigned" value="{{laptop_update.assigned}}">
+                <input class="input is-info is-narrow" type="text" placeholder="Mac:Address" name="Mac_address" value="{{laptop_update.mac_address}}">
+              </td>
+              <td>
+                <div class="control">
+                  <div class="select">
+                    <select name="assigned">
+                      <option></option>
+                      <option>Yes</option>
+                      <option>No</option>
+                    </select>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <input class="input is-info is-narrow" type="text" placeholder="Assigned to?" name="Assigned_to" value="{{laptop_update.assigned_to}}">
               </td>
               <td>
                 <button class="button is-info is-rounded">Save</button>
