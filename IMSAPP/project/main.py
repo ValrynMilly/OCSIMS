@@ -14,7 +14,10 @@ def index():
 @main.route('/profile')
 @login_required
 def profile():
-    return render_template('profile.html', name=current_user.name)
+    laptop_count = Laptops.query.count()
+    laptop_assigned = Laptops.query.filter(Laptops.assigned == 'Yes').count()
+    laptop_unassigned = Laptops.query.filter(Laptops.assigned == 'No').count()
+    return render_template('profile.html', name=current_user.name, laptop_count=laptop_count, laptop_assigned=laptop_assigned, laptop_unassigned=laptop_unassigned)
 
 @main.route('/laptops', methods=['POST', 'GET'])
 @login_required
@@ -26,16 +29,20 @@ def laptops():
         new_laptop_form_ram = request.form['RAM']
         new_laptop_form_storage = request.form['Storage']
         new_laptop_form_OS = request.form['Operating_System']
-        new_laptop_form_assigned = request.form['Assigned']
+        new_laptop_form_ma = request.form['Mac_address']
+        new_laptop_form_assigned = request.form.get('assigned')
+        new_laptop_form_assigned_to = request.form['Assigned_to']
         new_laptop_var_man = new_laptop_form_manufacturer
         new_laptop_var_mod = new_laptop_form_model
         new_laptop_var_cpu = new_laptop_form_cpu
         new_laptop_var_ram = new_laptop_form_ram
         new_laptop_var_storage = new_laptop_form_storage
         new_laptop_var_os = new_laptop_form_OS
+        new_laptop_var_ma = new_laptop_form_ma
         new_laptop_var_ass = new_laptop_form_assigned
+        new_laptop_var_at = new_laptop_form_assigned_to
         try:
-            new_laptop = Laptops(manufactor=new_laptop_var_man, model=new_laptop_var_mod, cpu=new_laptop_var_cpu, ram=new_laptop_var_ram, storage=new_laptop_var_storage, operating_system=new_laptop_var_os, assigned=new_laptop_var_ass)
+            new_laptop = Laptops(manufactor=new_laptop_var_man, model=new_laptop_var_mod, cpu=new_laptop_var_cpu, ram=new_laptop_var_ram, storage=new_laptop_var_storage, operating_system=new_laptop_var_os, mac_address = new_laptop_var_ma, assigned=new_laptop_var_ass, assigned_to = new_laptop_var_at)
             db.session.add(new_laptop)
             db.session.commit()
             return redirect('/laptops')

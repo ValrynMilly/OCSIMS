@@ -2,9 +2,14 @@
 <!-- Javascript imports, this page will be extended later on but I need some bootstrap functionality for update functionality -->
 
 {% block content %}
+<div style="position: center;">
+  <a>
+    <img src="https://img.icons8.com/ios-filled/150/000000/laptop.png"/>
+  </a>
+</div>
 
   <div class="column is-narrow">
-    <div class="column is-half">
+    <div class="column is-full">
       <aside class="menu">
         <p class="menu-label">
           General
@@ -21,19 +26,29 @@
   </div>
 
     
-      </div class="section">
-          <table class="table is-hoverable is-fullwidth" style="margin-bottom:20px; margin-right: 20%;">
+        </div class="table-container">
+          <table class="table is-bordered is-hoverable is-fullwidth" id="laptopTable" style="margin-bottom:20px; margin-right: 10%; color:rgb(105, 105, 105);">
             <thead>
               <tr>
-                <th><abbr title="ID">#</abbr></t h>
+                <td colspan="7">
+                  <input class="input is-primary" id="myInput" type="text" placeholder="Search Here" onkeyup="tableSearch()">
+                </td>
+                <td colspan="4" style="text-align: center;">
+                  This is the laptops table
+                </td>
+              </tr>
+              <tr>
+                <th>ID</th>
                 <th>Manufacturer</th>
-                <th><abbr title="Model">Model</abbr></th>
-                <th><abbr title="CPU">CPU</abbr></th>
-                <th><abbr title="RAM">RAM</abbr></th>
-                <th><abbr title="Storage">Storage</abbr></th>
-                <th><abbr title="Operating_System">Operating System</abbr></th>
-                <th><abbr title="Assigned">Assigned</abbr></th>
-                <th><abbr title="Action">Action</abbr></th>
+                <th>Model</th>
+                <th>CPU</th>
+                <th>RAM</th>
+                <th>Storage</th>
+                <th>Operating System</th>
+                <th>Mac:Address</th>
+                <th>Assigned</th>
+                <th>Assigned to</th>
+                <th style="text-align: center;">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -46,13 +61,15 @@
                   <td>{{ la.ram }}</td>
                   <td>{{ la.storage }}</td>
                   <td>{{ la.operating_system }}</td>
+                  <td>{{ la.mac_address }}</td>
                   <td>{{ la.assigned }}</td>
-                  <td>
+                  <td>{{ la.assigned_to }}</td>
+                  <td style="text-align: center;">
                     <a href="update/{{ la.id }}">
-                      <button class="button is-success is-rounded">Update</button>
+                      <img src="https://img.icons8.com/color-glass/30/000000/edit--v1.png"/>
                     </a>
                     <a href="delete/{{ la.id }}">
-                      <button class="button is-danger is-rounded">Delete</button>
+                      <img src="https://img.icons8.com/color/32/000000/delete-forever.png"/>
                     </a>
                   </td>
                 </tr>
@@ -83,14 +100,52 @@
                 <input class="input is-info is-narrow" type="text" placeholder="OS" name="Operating_System">
               </td>
               <td>
-                <input class="input is-info is-narrow" type="text" placeholder="Assigned?" name="Assigned">
+                <input class="input is-info is-narrow" type="text" placeholder="Mac:Address" name="Mac_address">
+              </td>
+              <td>
+                <div class="control">
+                  <div class="select">
+                    <select  name="assigned">
+                      <option>Yes</option>
+                      <option>No</option>
+                    </select>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <input class="input is-info is-narrow" type="text" placeholder="Assigned to?" name="Assigned_to">
               </td>
               <td>
                 <button class="button is-info is-rounded">Submit</button>
               </td>
             </form>
           </table>
+        </div>
       </div>
+    </div>
 
+    <script type="application/javascript">
+      function tableSearch() {
+          var input, filter, found, table, tr, td, i, j;
+          input = document.getElementById("myInput");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("laptopTable");
+          tr = table.getElementsByTagName("tr");
+          for (i = 2; i < tr.length; i++) {
+              td = tr[i].getElementsByTagName("td");
+              for (j = 0; j < td.length; j++) {
+                  if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                      found = true;
+                  }
+              }
+              if (found) {
+                  tr[i].style.display = "";
+                  found = false;
+              } else {
+                  tr[i].style.display = "none";
+              }
+          }
+      }
+    </script>
 
 {% endblock %}

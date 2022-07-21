@@ -10,10 +10,12 @@ class User(UserMixin, db.Model):
 
 class Laptops(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    manufactor = db.Column(db.String(50), unique=True)
+    manufactor = db.Column(db.String(50))
     model = db.Column(db.String(50))
     cpu = db.Column(db.String(50))
     ram = db.Column(db.String(50))
     storage = db.Column(db.String(50))
     operating_system = db.Column(db.String(50))
+    mac_address = db.Column(db.String(100))
     assigned = db.Column(db.String(100))
+    assigned_to = db.Column(db.String(30))

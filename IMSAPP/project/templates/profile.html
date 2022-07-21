@@ -2,18 +2,6 @@
 
 {% block content %}
 <div class="columns">
-    <aside class="menu">
-      <p class="menu-label">
-        General
-      </p>
-      <ul class="menu-list">
-        <li><a href="laptops">Laptops</a></li>
-        <li><a>Desktops</a></li>
-        <li><a>Mobile Phones</a></li>
-        <li><a>Sim Cards</a></li>
-        <li><a>Accessories</a></li>
-      </ul>
-    </aside>
   
     <head>
       <!-- Required meta tags -->
@@ -37,27 +25,34 @@
     
   <body>
       <div class="container">
-        <h1>Quick Overview</h1>
+        <h3>OVERVIEW DASHBOARD</h3>
+        <h4>click any of the cards to redirect to table pages :)</h4>
+        <br>
           <div class="row">
-              <div class="col-lg-3 mb-4">
-                  <div class="card">
-                      <img class="card-img-top" src="" alt="">
-    
-                      <div class="card-body">
-                          <h5 class="card-title">We have</h5>
-                          <h1 class="card-text">
-                            6
-                          </h1>
-                          <h5 class="card-text">
-                              Laptops
-                          </h5>
-    
-                          <a href="#" class="btn btn-outline-primary btn-sm">
-                              Quick Link
-                          </a>
-                      </div>
-                  </div>
-              </div>
+            <a href="laptops" style="text-decoration: none">
+                <div class="col-lg-3 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">We have</h5>
+                            <h1 class="card-text">
+                              {{ laptop_count }}
+                            </h1>
+                            <h5 class="card-text">
+                                Laptops
+                            </h5>
+                            <h6>
+                             {{laptop_assigned}} Assigned
+                            </h6>
+                            <h6>
+                            {{laptop_unassigned}} Unssigned
+                            </h6>
+                            <a></a>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
               <div class="col-lg-3 mb-4">
                 <div class="card">
                     <img class="card-img-top" src="" alt="">
