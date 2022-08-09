@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% if current_user.is_authenticated %}
+<meta http-equiv="refresh" content="5; url=http://example.com/">
+{% endif %}
+
 {% block content %}
 <div class="column is-4 is-offset-4">
     <h3 class="title">Login</h3>

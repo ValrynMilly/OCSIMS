@@ -4,7 +4,7 @@
 {% block content %}
 
   <div class="column is-narrow">
-    <div class="column is-half">
+    <div class="column is-full">
       <aside class="menu">
         <p class="menu-label">
           General
@@ -27,15 +27,15 @@
               <tr>
                 <th><abbr title="ID">#</abbr></t h>
                 <th>Manufacturer</th>
-                <th><abbr title="Model">Model</abbr></th>
-                <th><abbr title="CPU">CPU</abbr></th>
-                <th><abbr title="RAM">RAM</abbr></th>
-                <th><abbr title="Storage">Storage</abbr></th>
-                <th><abbr title="Operating_System">Operating System</abbr></th>
-                <th><abbr title="mac_address">Mac Address</abbr></th>
-                <th><abbr title="Assigned">Assigned?</abbr></th>
-                <th><abbr title="Assigned_to">Assigned to</abbr></th>
-                <th><abbr title="Action">Action</abbr></th>
+                <th>Model</th>
+                <th>CPU</th>
+                <th>RAM</th>
+                <th>Storage</th>
+                <th>Operating System</th>
+                <th>Mac Address</th>
+                <th>Assigned?</th>
+                <th>Assigned to?</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -77,7 +77,7 @@
               <td>
                 <div class="control">
                   <div class="select">
-                    <select name="assigned">
+                    <select name="assigned" required="required">
                       <option></option>
                       <option>Yes</option>
                       <option>No</option>

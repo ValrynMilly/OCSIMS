@@ -3,7 +3,9 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user
 from sqlalchemy import insert
 from . import db
-from .models import Laptops
+from .models.hatfield_models import Laptops
+
+
 
 main = Blueprint('main', __name__)
 
