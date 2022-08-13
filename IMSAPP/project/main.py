@@ -1,17 +1,44 @@
 from urllib import request
+import os
+import sys
+from importlib import reload
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user
 from sqlalchemy import insert
 from . import db
-from .models.hatfield_models import Laptops
+from flask_caching import Cache
+from sqlalchemy import create_engine
+from sqlalchemy.orm import Session
 
+cache = Cache()
 
 
 main = Blueprint('main', __name__)
-
 @main.route('/')
 def index():
     return render_template('index.html')
+
+@main.route('/location', methods=['POST', 'GET'])
+@login_required
+def location():
+    db.session.close()
+    db.session.commit()
+    global Laptops
+    if request.method == 'POST':
+        global site_selected
+        site_selected = request.form.get('site_select')
+        if site_selected == 'Hatfield':
+            from .models.hatfield_models import Laptops as Laptops
+        elif site_selected == 'Bicester':
+            from .models.bicester_models import Laptops as Laptops
+        elif site_selected == 'Dordon':
+            from .models.dordon_models import Laptops as Laptops
+        laptop_count = Laptops.query.count()
+        db.session.commit()
+        return render_template('profile.html', laptop_count=laptop_count, site_selected=site_selected)
+    return render_template('location.html')
+
+
 
 @main.route('/profile')
 @login_required
@@ -19,10 +46,11 @@ def profile():
     laptop_count = Laptops.query.count()
     laptop_assigned = Laptops.query.filter(Laptops.assigned == 'Yes').count()
     laptop_unassigned = Laptops.query.filter(Laptops.assigned == 'No').count()
-    return render_template('profile.html', name=current_user.name, 
+    db.session.commit()
+    return render_template('profile.html',name=current_user.name, 
     laptop_count=laptop_count, 
     laptop_assigned=laptop_assigned, 
-    laptop_unassigned=laptop_unassigned)
+    laptop_unassigned=laptop_unassigned, site_selected=site_selected)
 
 @main.route('/laptops', methods=['POST', 'GET'])
 @login_required

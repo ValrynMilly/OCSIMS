@@ -1,6 +1,8 @@
 from flask import Flask
+from flask_caching import Cache
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask_caching import Cache
 
 # init SQLAlchemy so we can use it later in our models
 db = SQLAlchemy()
@@ -19,7 +21,8 @@ def create_app():
     'Avonmouth_db' : 'sqlite:///databases/Avonmouth_db.sqlite',
     'Bicester_db' : 'sqlite:///databases/Bicester_db.sqlite'}
     db.init_app(app)
-
+    app.config['CACHE_TYPE']='SimpleCache'
+    cache = Cache(app)
     # blueprint for auth routes in our app
     from .auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint)

@@ -34,9 +34,31 @@
                             <!--Another link can be added here for signup-->
                             {% endif %}
                             {% if current_user.is_authenticated %}
-                            <a href="{{ url_for('auth.logout') }}" class="navbar-item">
+
+                            
+                            <form action="/location" method="POST">
+                                <div class="field">
+                                   <div class="select is-medium is-rounded">
+                                       <select  name="site_select">
+                                         <option>Hatfield</option>
+                                         <option>Dordon</option>
+                                         <option>Andover</option>
+                                         <option>Erith</option>
+                                         <option>Purfleet</option>
+                                         <option>Avonmouth</option>
+                                         <option>Bicester</option>
+                                       </select>
+                                   </div>
+                                   <a>
+                                       <button class="button is-info is-medium">Submit</button>
+                                   </a>
+                               </div>   
+                               </form>
+                            
+                               <a href="{{ url_for('auth.logout') }}" class="navbar-item">
                                 Logout
                             </a>
+                               
                             {% endif %}
                         </div>
                     </div>
