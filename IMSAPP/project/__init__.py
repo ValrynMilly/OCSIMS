@@ -2,7 +2,6 @@ from flask import Flask
 from flask_caching import Cache
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
-from flask_caching import Cache
 
 # init SQLAlchemy so we can use it later in our models
 db = SQLAlchemy()
@@ -13,13 +12,7 @@ def create_app():
     app.config['SECRET_KEY'] = 'secret-key-goes-here'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///databases/db.sqlite'
     app.config['SQLALCHEMY_BINDS'] = {'Users_db' : 'sqlite:///databases/Users_db.sqlite',
-    'Hatfield_db' : 'sqlite:///databases/Hatfield_db.sqlite',
-    'Dordon_db' : 'sqlite:///databases/Dordon_db.sqlite',
-    'Andover_db' : 'sqlite:///databases/Andover_db.sqlite',
-    'Erith_db' : 'sqlite:///databases/Erith_db.sqlite',
-    'Purfleet_db' : 'sqlite:///databases/Purfleet_db.sqlite',
-    'Avonmouth_db' : 'sqlite:///databases/Avonmouth_db.sqlite',
-    'Bicester_db' : 'sqlite:///databases/Bicester_db.sqlite'}
+    'Site_db' : 'sqlite:///databases/Site_db.sqlite'}
     db.init_app(app)
     app.config['CACHE_TYPE']='SimpleCache'
     cache = Cache(app)

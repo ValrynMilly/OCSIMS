@@ -17,16 +17,7 @@ def login_post():
     password = request.form.get('password')
     remember = True if request.form.get('remember') else False
     user = User.query.filter_by(email=email).first()
-    global Laptops
-    if request.method == 'POST':
-        global site_selected
-        site_selected = request.form.get('site_select')
-        if site_selected == 'Hatfield':
-            from .models.hatfield_models import Laptops as Laptops
-        elif site_selected == 'Bicester':
-            from .models.bicester_models import Laptops as Laptops
-        elif site_selected == 'Dordon':
-            from .models.dordon_models import Laptops as Laptops
+
     # check if the user actually exists
     # take the user-supplied password, hash it, and compare it to the hashed password in the database
     if not user or not check_password_hash(user.password, password):

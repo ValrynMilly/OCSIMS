@@ -9,10 +9,11 @@ from . import db
 from flask_caching import Cache
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
+from .models.site_models import Laptops
 
 cache = Cache()
 
-
+pipreqs="IMSAPP\project"
 main = Blueprint('main', __name__)
 @main.route('/')
 def index():
@@ -28,13 +29,7 @@ def location():
         global site_selected
         site_selected = request.form.get('site_select')
         if site_selected == 'Hatfield':
-            from .models.hatfield_models import Laptops as Laptops
-        elif site_selected == 'Bicester':
-            from .models.bicester_models import Laptops as Laptops
-        elif site_selected == 'Dordon':
-            from .models.dordon_models import Laptops as Laptops
-        laptop_count = Laptops.query.count()
-        db.session.commit()
+            laptop_count = Laptops.query.count()
         return render_template('profile.html', laptop_count=laptop_count, site_selected=site_selected)
     return render_template('location.html')
 
