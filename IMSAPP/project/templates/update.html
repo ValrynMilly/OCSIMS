@@ -1,23 +1,27 @@
-{% extends "profile.html" %}
+{% extends "dashboard.html" %}
 <!-- Javascript imports, this page will be extended later on but I need some bootstrap functionality for update functionality -->
 
 {% block content %}
-
+<div style="position: center;">
+  <a>
+    <img src="https://img.icons8.com/ios-filled/150/000000/laptop.png"/>
+  </a>
+</div>
   <div class="column is-narrow">
-    <div class="column is-full">
       <aside class="menu">
         <p class="menu-label">
-          General
+          Quick Links
         </p>
         <ul class="menu-list">
           <li><a>Laptops</a></li>
           <li><a>Desktops</a></li>
           <li><a>Mobile Phones</a></li>
-          <li><a>Sim Cards</a></li>
+          <li><a>Screens</a></li>
+          <li><a>Printers</a></li>
+          <li><a>Tools</a></li>
           <li><a>Accessories</a></li>
         </ul>
       </aside>
-    </div>
   </div>
 
     
@@ -26,6 +30,7 @@
             <thead>
               <tr>
                 <th><abbr title="ID">#</abbr></t h>
+                <th>Name</th>
                 <th>Manufacturer</th>
                 <th>Model</th>
                 <th>CPU</th>
@@ -33,6 +38,7 @@
                 <th>Storage</th>
                 <th>Operating System</th>
                 <th>Mac Address</th>
+                <th>Location</th>
                 <th>Assigned?</th>
                 <th>Assigned to?</th>
                 <th>Action</th>
@@ -52,6 +58,9 @@
                 <label class="checkbox">
                   <disabled>
                 </label> 
+              </td>
+              <td>
+                <input class="input is-info is-narrow" type="text" placeholder="Name" name="Name" value="{{laptop_update.name}}">
               </td>
               <td>
                 <input class="input is-info is-narrow" type="text" placeholder="Manufacturer" name="Manufacturer" value="{{laptop_update.manufactor}}">
@@ -77,8 +86,21 @@
               <td>
                 <div class="control">
                   <div class="select">
+                    <select name="Location" required="required">
+                      <option value="" disabled selected></option>
+                      <option>OSS Office</option>
+                      <option>SAT Office</option>
+                      <option>OSS Cage</option>
+                      <option>On Person</option>
+                    </select>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="control">
+                  <div class="select">
                     <select name="assigned" required="required">
-                      <option></option>
+                      <option value="" disabled selected></option>
                       <option>Yes</option>
                       <option>No</option>
                     </select>

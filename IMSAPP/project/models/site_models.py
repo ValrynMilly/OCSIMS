@@ -2,13 +2,14 @@ from enum import unique
 from flask_login import UserMixin
 from project import db
 
-#from project import users_db,'Site_db, Dordon_db, Andover_db, Erith_db, Purfleet_db, Avonmouth_db, Bicester_db, create_app, models
+#from project import db, create_app, models
 #users_db.create_all(app=create_app())
 
 class Laptops(db.Model):
     __bind_key__ = 'Site_db'
     __table_args__ = {'extend_existing': True} 
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50))
     manufactor = db.Column(db.String(50))
     model = db.Column(db.String(50))
     cpu = db.Column(db.String(50))
@@ -16,13 +17,16 @@ class Laptops(db.Model):
     storage = db.Column(db.String(50))
     operating_system = db.Column(db.String(50))
     mac_address = db.Column(db.String(100))
+    location = db.Column(db.String(50))
     assigned = db.Column(db.String(100))
     assigned_to = db.Column(db.String(30))
+    notes = db.Column(db.String(5000))
 
 class Desktops(db.Model):
     __bind_key__ = 'Site_db'
     __table_args__ = {'extend_existing': True} 
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50))
     manufactor = db.Column(db.String(50))
     model = db.Column(db.String(50))
     cpu = db.Column(db.String(50))
@@ -30,8 +34,7 @@ class Desktops(db.Model):
     storage = db.Column(db.String(50))
     operating_system = db.Column(db.String(50))
     mac_address = db.Column(db.String(100))
-    assigned = db.Column(db.String(100))
-    assigned_to = db.Column(db.String(30))
+    location = db.Column(db.String(50))
 
 class Mobile_Phone(db.Model):
     __bind_key__ = 'Site_db'
@@ -43,9 +46,17 @@ class Mobile_Phone(db.Model):
     cpu = db.Column(db.String(50))
     storage = db.Column(db.String(50))
     operating_system = db.Column(db.String(50))
-    mac_address = db.Column(db.String(100))
-    assigned = db.Column(db.String(100))
     assigned_to = db.Column(db.String(30))
+    location = db.Column(db.String(50))
+
+class SimCards(db.Model):
+    __bind_key__ = 'Site_db'
+    __table_args__ = {'extend_existing': True} 
+    id = db.Column(db.Integer, primary_key=True)
+    provider = db.Column(db.String(50))
+    assigned_to = db.Column(db.String(30))
+    location = db.Column(db.String(50))
+    amount = db.Column(db.Integer)
 
 class Monitors(db.Model):
     __bind_key__ = 'Site_db'
@@ -58,8 +69,7 @@ class Monitors(db.Model):
     refresh_rate = db.Column(db.String(50))
     inputs = db.Column(db.String(100))
     mac_address = db.Column(db.String(100))
-    assigned = db.Column(db.String(100))
-    assigned_to = db.Column(db.String(30))
+    location = db.Column(db.String(100))
 
 class Printers(db.Model):
     __bind_key__ = 'Site_db'
@@ -68,5 +78,24 @@ class Printers(db.Model):
     manufactor = db.Column(db.String(50))
     model = db.Column(db.String(50))
     mac_address = db.Column(db.String(100))
-    assigned = db.Column(db.String(100))
-    assigned_to = db.Column(db.String(30))
+    location = db.Column(db.String(100))
+
+class Tools(db.Model):
+    __bind_key__ = 'Site_db'
+    __table_args__ = {'extend_existing': True} 
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50))
+    type = db.Column(db.String(50))
+    manufacturer = db.Column(db.String(50))
+    description = db.Column(db.String(100))
+    amount = db.Column(db.Integer)
+
+class Accessories(db.Model):
+    __bind_key__ = 'Site_db'
+    __table_args__ = {'extend_existing': True} 
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50))
+    type = db.Column(db.String(50))
+    manufacturer = db.Column(db.String(50))
+    description = db.Column(db.String(100))
+    amount = db.Column(db.Integer)

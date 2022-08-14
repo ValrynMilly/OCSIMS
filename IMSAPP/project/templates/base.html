@@ -18,12 +18,43 @@
                     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Ocado_Group_Logo.svg" alt="OCSIMS" width="112" height="28">
                 </a>
                     <div id="navbarMenuHeroA" class="navbar-menu">
+
                         <div class="navbar-end">
+                            {% if current_user.is_authenticated %}
+
+                            <form action="/location" method="POST">
+                                <div class="navbar-item">
+                                   <div class="select is-default is-rounded">
+                                       <select  name="site_select" id="site_select">
+                                         <option value="" disabled selected>Select Site</option>
+                                         <option value="www.google.com">Hatfield</option>
+                                         <option value="">Dordon</option>
+                                         <option value="">Andover</option>
+                                         <option value="">Erith</option>
+                                         <option value="">Purfleet</option>
+                                         <option value="">Avonmouth</option>
+                                         <option value="">Bicester</option>
+                                       </select>
+                                   </div>
+                               </div>   
+                               </form> 
+                               
+                               <script type="text/javascript">
+                                    var urlMenu = document.getElementsByName('site_select');
+                                    urlMenu.onchange = function() {
+                                        var userOption = this.options[this.selectedIndex];
+                                        if (userOption.value != "nothing") {
+                                            window.open(userOption.value, "Site Page", "");
+                                        }
+                                    }
+                               </script>
+
+                            {% endif %}
                             <a href="{{ url_for('main.index') }}" class="navbar-item">
                                 Home
                             </a>
                             {% if current_user.is_authenticated %}
-                            <a href="{{ url_for('main.profile') }}" class="navbar-item">
+                            <a href="{{ url_for('main.dashboard') }}" class="navbar-item">
                                 Dashboard
                             </a>
                             {% endif %}
@@ -34,30 +65,9 @@
                             <!--Another link can be added here for signup-->
                             {% endif %}
                             {% if current_user.is_authenticated %}
-
-                            
-                            <form action="/location" method="POST">
-                                <div class="field">
-                                   <div class="select is-medium is-rounded">
-                                       <select  name="site_select">
-                                         <option>Hatfield</option>
-                                         <option>Dordon</option>
-                                         <option>Andover</option>
-                                         <option>Erith</option>
-                                         <option>Purfleet</option>
-                                         <option>Avonmouth</option>
-                                         <option>Bicester</option>
-                                       </select>
-                                   </div>
-                                   <a>
-                                       <button class="button is-info is-medium">Submit</button>
-                                   </a>
-                               </div>   
-                               </form>
-                            
                                <a href="{{ url_for('auth.logout') }}" class="navbar-item">
                                 Logout
-                            </a>
+                                </a>
                                
                             {% endif %}
                         </div>

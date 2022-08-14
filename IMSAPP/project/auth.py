@@ -1,7 +1,7 @@
 import site
 from urllib import request
 from flask import Blueprint, render_template, redirect, url_for, request, flash, session
-from flask_login import login_user, login_required, logout_user
+from flask_login import login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models.user_models import User
 from . import db
@@ -9,6 +9,8 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/login')
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('main.dashboard'))
     return render_template('login.html')
 
 @auth.route('/login', methods=['POST', 'GET'])
@@ -26,7 +28,7 @@ def login_post():
 
     # if the above check passes, then we know the user has the right credentials
     login_user(user, remember=remember)
-    return redirect(url_for('main.location'))
+    return redirect(url_for('main.dashboard'))
 
 @auth.route('/signup')
 def signup():

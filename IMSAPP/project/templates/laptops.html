@@ -1,4 +1,4 @@
-{% extends "profile.html" %}
+{% extends "dashboard.html" %}
 <!-- Javascript imports, this page will be extended later on but I need some bootstrap functionality for update functionality -->
 
 {% block content %}
@@ -12,13 +12,15 @@
     <div class="column is-full">
       <aside class="menu">
         <p class="menu-label">
-          General
+          Quick Links
         </p>
         <ul class="menu-list">
           <li><a>Laptops</a></li>
           <li><a>Desktops</a></li>
           <li><a>Mobile Phones</a></li>
           <li><a>Sim Cards</a></li>
+          <li><a>Monitors</a></li>
+          <li><a>Printers</a></li>
           <li><a>Accessories</a></li>
         </ul>
       </aside>
@@ -30,15 +32,16 @@
           <table class="table is-bordered is-hoverable is-fullwidth" id="laptopTable" style="margin-bottom:20px; margin-right: 10%; color:rgb(105, 105, 105);">
             <thead>
               <tr>
-                <td colspan="7">
+                <td colspan="9">
                   <input class="input is-primary" id="myInput" type="text" placeholder="Search Here" onkeyup="tableSearch()">
                 </td>
-                <td colspan="4" style="text-align: center;">
+                <td colspan="4" style="text-align: center; font-size: 120%;">
                   This is the laptops table
                 </td>
               </tr>
               <tr>
                 <th>ID</th>
+                <th>Name</th>
                 <th>Manufacturer</th>
                 <th>Model</th>
                 <th>CPU</th>
@@ -46,6 +49,7 @@
                 <th>Storage</th>
                 <th>Operating System</th>
                 <th>Mac:Address</th>
+                <th style="text-align: center;">Location</th>
                 <th>Assigned</th>
                 <th>Assigned to</th>
                 <th style="text-align: center;">Action</th>
@@ -55,6 +59,7 @@
               {% for la in laptop %}
                 <tr>
                   <td>{{ la.id }}</td>
+                  <td>{{ la.name }}</td>
                   <td>{{ la.manufactor }}</td>
                   <td>{{ la.model }}</td>
                   <td>{{ la.cpu }}</td>
@@ -62,6 +67,7 @@
                   <td>{{ la.storage }}</td>
                   <td>{{ la.operating_system }}</td>
                   <td>{{ la.mac_address }}</td>
+                  <td>{{ la.location }}</td>
                   <td>{{ la.assigned }}</td>
                   <td>{{ la.assigned_to }}</td>
                   <td style="text-align: center;">
@@ -80,6 +86,9 @@
                 <label class="checkbox">
                   <disabled>
                 </label> 
+              </td>
+              <td>
+                <input class="input is-info is-narrow" type="text" placeholder="Name" name="Name">
               </td>
               <td>
                 <input class="input is-info is-narrow" type="text" placeholder="Manufacturer" name="Manufacturer">
@@ -105,6 +114,18 @@
               <td>
                 <div class="control">
                   <div class="select">
+                    <select  name="Location">
+                      <option>OSS Office</option>
+                      <option>SAT Office</option>
+                      <option>OSS Cage</option>
+                      <option>On Person</option>
+                    </select>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="control" style="text-align: center;">
+                  <div class="select is-narrow is-centered">
                     <select  name="assigned">
                       <option>Yes</option>
                       <option>No</option>
