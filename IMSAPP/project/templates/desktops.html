@@ -4,7 +4,7 @@
 {% block content %}
 <div style="position: center;">
   <a>
-    <img src="https://img.icons8.com/ios-filled/150/000000/laptop.png"/>
+    <img src="https://img.icons8.com/external-prettycons-solid-prettycons/150/000000/external-pc-tower-devices-prettycons-solid-prettycons.png"/>
   </a>
 </div>
 
@@ -32,11 +32,11 @@
           <table class="table is-bordered is-hoverable is-fullwidth" id="laptopTable" style="margin-bottom:20px; margin-right: 10%; color:rgb(105, 105, 105);">
             <thead>
               <tr>
-                <td colspan="9">
+                <td colspan="7">
                   <input class="input is-primary" id="myInput" type="text" placeholder="Search Here" onkeyup="tableSearch()">
                 </td>
                 <td colspan="4" style="text-align: center; font-size: 120%;">
-                  This is the laptops table, simply fill in the fields and click submit.
+                  This is the desktops table, simply fill in the fields and click submit.
                 </td>
               </tr>
               <tr>
@@ -50,38 +50,34 @@
                 <th>Operating System</th>
                 <th>Mac:Address</th>
                 <th style="text-align: center;">Location</th>
-                <th>Assigned</th>
-                <th>Assigned to</th>
                 <th style="text-align: center;">Action</th>
               </tr>
             </thead>
             <tbody>
-              {% for la in laptop %}
+              {% for da in desktop %}
                 <tr>
-                  <td>{{ la.id }}</td>
-                  <td>{{ la.name }}</td>
-                  <td>{{ la.manufactor }}</td>
-                  <td>{{ la.model }}</td>
-                  <td>{{ la.cpu }}</td>
-                  <td>{{ la.ram }}</td>
-                  <td>{{ la.storage }}</td>
-                  <td>{{ la.operating_system }}</td>
-                  <td>{{ la.mac_address }}</td>
-                  <td>{{ la.location }}</td>
-                  <td>{{ la.assigned }}</td>
-                  <td>{{ la.assigned_to }}</td>
+                  <td>{{ da.id }}</td>
+                  <td>{{ da.name }}</td>
+                  <td>{{ da.manufactor }}</td>
+                  <td>{{ da.model }}</td>
+                  <td>{{ da.cpu }}</td>
+                  <td>{{ da.ram }}</td>
+                  <td>{{ da.storage }}</td>
+                  <td>{{ da.operating_system }}</td>
+                  <td>{{ da.mac_address }}</td>
+                  <td>{{ da.location }}</td>
                   <td style="text-align: center;">
-                    <a href="update_laptop/{{ la.id }}">
+                    <a href="update_desktop/{{ da.id }}">
                       <img src="https://img.icons8.com/color-glass/30/000000/edit--v1.png"/>
                     </a>
-                    <a href="delete_laptop/{{ la.id }}">
+                    <a href="delete_desktop/{{ da.id }}">
                       <img src="https://img.icons8.com/color/32/000000/delete-forever.png"/>
                     </a>
                   </td>
                 </tr>
               {% endfor %}
             </tbody>
-            <form action="/laptops" method="POST">
+            <form action="/desktops" method="POST">
               <td>
                 <label class="checkbox">
                   <disabled>
@@ -122,19 +118,6 @@
                     </select>
                   </div>
                 </div>
-              </td>
-              <td>
-                <div class="control" style="text-align: center;">
-                  <div class="select is-narrow is-centered">
-                    <select  name="assigned">
-                      <option>Yes</option>
-                      <option>No</option>
-                    </select>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <input class="input is-info is-narrow" type="text" placeholder="Assigned to?" name="Assigned_to">
               </td>
               <td>
                 <button class="button is-info is-rounded">Submit</button>

@@ -4,7 +4,7 @@
 {% block content %}
 <div style="position: center;">
   <a>
-    <img src="https://img.icons8.com/ios-filled/150/000000/laptop.png"/>
+    <img src="https://img.icons8.com/ios-filled/150/000000/smartphone.png"/>
   </a>
 </div>
 
@@ -32,64 +32,46 @@
           <table class="table is-bordered is-hoverable is-fullwidth" id="laptopTable" style="margin-bottom:20px; margin-right: 10%; color:rgb(105, 105, 105);">
             <thead>
               <tr>
-                <td colspan="9">
+                <td colspan="4">
                   <input class="input is-primary" id="myInput" type="text" placeholder="Search Here" onkeyup="tableSearch()">
                 </td>
                 <td colspan="4" style="text-align: center; font-size: 120%;">
-                  This is the laptops table, simply fill in the fields and click submit.
+                  This is the Mobile Phones table, simply fill in the fields and click submit.
                 </td>
               </tr>
               <tr>
-                <th>ID</th>
-                <th>Name</th>
                 <th>Manufacturer</th>
                 <th>Model</th>
+                <th>Display</th>
                 <th>CPU</th>
-                <th>RAM</th>
                 <th>Storage</th>
                 <th>Operating System</th>
-                <th>Mac:Address</th>
                 <th style="text-align: center;">Location</th>
-                <th>Assigned</th>
-                <th>Assigned to</th>
                 <th style="text-align: center;">Action</th>
               </tr>
             </thead>
             <tbody>
-              {% for la in laptop %}
+              {% for mp in mobile_phones %}
                 <tr>
-                  <td>{{ la.id }}</td>
-                  <td>{{ la.name }}</td>
-                  <td>{{ la.manufactor }}</td>
-                  <td>{{ la.model }}</td>
-                  <td>{{ la.cpu }}</td>
-                  <td>{{ la.ram }}</td>
-                  <td>{{ la.storage }}</td>
-                  <td>{{ la.operating_system }}</td>
-                  <td>{{ la.mac_address }}</td>
-                  <td>{{ la.location }}</td>
-                  <td>{{ la.assigned }}</td>
-                  <td>{{ la.assigned_to }}</td>
+                  <td>{{ mp.manufactor }}</td>
+                  <td>{{ mp.model }}</td>
+                  <td>{{ mp.display }}</td>
+                  <td>{{ mp.cpu }}</td>
+                  <td>{{ mp.storage }}</td>
+                  <td>{{ mp.operating_system }}</td>
+                  <td>{{ mp.location }}</td>
                   <td style="text-align: center;">
-                    <a href="update_laptop/{{ la.id }}">
+                    <a href="update_mobile_phone/{{ mp.id }}">
                       <img src="https://img.icons8.com/color-glass/30/000000/edit--v1.png"/>
                     </a>
-                    <a href="delete_laptop/{{ la.id }}">
+                    <a href="delete_mobile_phone/{{ mp.id }}">
                       <img src="https://img.icons8.com/color/32/000000/delete-forever.png"/>
                     </a>
                   </td>
                 </tr>
               {% endfor %}
             </tbody>
-            <form action="/laptops" method="POST">
-              <td>
-                <label class="checkbox">
-                  <disabled>
-                </label> 
-              </td>
-              <td>
-                <input class="input is-info is-narrow" type="text" placeholder="Name" name="Name">
-              </td>
+            <form action="/mobile_phones" method="POST">
               <td>
                 <input class="input is-info is-narrow" type="text" placeholder="Manufacturer" name="Manufacturer">
               </td>
@@ -97,19 +79,16 @@
                 <input class="input is-info is-narrow" type="text" placeholder="Model" name="Model">
               </td>
               <td>
-                <input class="input is-info is-narrow" type="text" placeholder="CPU" name="CPU">
+                <input class="input is-info is-narrow" type="text" placeholder="Display" name="Display">
               </td>
               <td>
-                <input class="input is-info is-narrow" type="text" placeholder="RAM" name="RAM">
+                <input class="input is-info is-narrow" type="text" placeholder="CPU" name="CPU">
               </td>
               <td>
                 <input class="input is-info is-narrow" type="text" placeholder="Storage" name="Storage">
               </td>
               <td>
                 <input class="input is-info is-narrow" type="text" placeholder="OS" name="Operating_System">
-              </td>
-              <td>
-                <input class="input is-info is-narrow" type="text" placeholder="Mac:Address" name="Mac_address">
               </td>
               <td>
                 <div class="control">
@@ -122,19 +101,6 @@
                     </select>
                   </div>
                 </div>
-              </td>
-              <td>
-                <div class="control" style="text-align: center;">
-                  <div class="select is-narrow is-centered">
-                    <select  name="assigned">
-                      <option>Yes</option>
-                      <option>No</option>
-                    </select>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <input class="input is-info is-narrow" type="text" placeholder="Assigned to?" name="Assigned_to">
               </td>
               <td>
                 <button class="button is-info is-rounded">Submit</button>

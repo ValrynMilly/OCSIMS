@@ -12,4 +12,3 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(100))
     name = db.Column(db.String(100))
     role = db.Column(db.String(300))
-    name = db.Column(db.String(100))

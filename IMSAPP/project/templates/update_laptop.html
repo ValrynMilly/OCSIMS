@@ -1,0 +1,121 @@
+{% extends "dashboard.html" %}
+<!-- Javascript imports, this page will be extended later on but I need some bootstrap functionality for update functionality -->
+
+{% block content %}
+<div style="position: center;">
+  <a>
+    <img src="https://img.icons8.com/ios-filled/150/000000/laptop.png"/>
+  </a>
+</div>
+  <div class="column is-narrow">
+      <aside class="menu">
+        <p class="menu-label">
+          Quick Links
+        </p>
+        <ul class="menu-list">
+          <li><a>Laptops</a></li>
+          <li><a>Desktops</a></li>
+          <li><a>Mobile Phones</a></li>
+          <li><a>Screens</a></li>
+          <li><a>Printers</a></li>
+          <li><a>Tools</a></li>
+          <li><a>Accessories</a></li>
+        </ul>
+      </aside>
+  </div>
+
+    
+      </div class="section">
+          <table class="table is-hoverable is-bordered is-fullwidth" style="margin-bottom:20px; margin-right: 20%;" contenteditable="true">
+            <thead>
+              <tr>
+                <th><abbr title="ID">#</abbr></t h>
+                <th>Name</th>
+                <th>Manufacturer</th>
+                <th>Model</th>
+                <th>CPU</th>
+                <th>RAM</th>
+                <th>Storage</th>
+                <th>Operating System</th>
+                <th>Mac Address</th>
+                <th>Location</th>
+                <th>Assigned?</th>
+                <th>Assigned to?</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for la in laptop %}
+                <tr>
+                  <td>
+                    <button class="button is-success is-rounded" href="/update_laptop{{la.id}}">Save</button>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+            <form action="/update_laptop/{{laptop_update.id}}" method="POST">
+              <td>
+                <label class="checkbox">
+                  <disabled>
+                </label> 
+              </td>
+              <td>
+                <input class="input is-info is-narrow" type="text" placeholder="Name" name="Name" value="{{laptop_update.name}}">
+              </td>
+              <td>
+                <input class="input is-info is-narrow" type="text" placeholder="Manufacturer" name="Manufacturer" value="{{laptop_update.manufactor}}">
+              </td>
+              <td>
+                <input class="input is-info is-narrow" type="text" placeholder="Model" name="Model" value="{{laptop_update.model}}">
+              </td>
+              <td>
+                <input class="input is-info is-narrow" type="text" placeholder="CPU" name="CPU" value="{{laptop_update.cpu}}">
+              </td>
+              <td>
+                <input class="input is-info is-narrow" type="text" placeholder="RAM" name="RAM" value="{{laptop_update.ram}}">
+              </td>
+              <td>
+                <input class="input is-info is-narrow" type="text" placeholder="Storage" name="Storage" value="{{laptop_update.storage}}">
+              </td>
+              <td>
+                <input class="input is-info is-narrow" type="text" placeholder="OS" name="Operating_System" value="{{laptop_update.operating_system}}">
+              </td>
+              <td>
+                <input class="input is-info is-narrow" type="text" placeholder="Mac:Address" name="Mac_address" value="{{laptop_update.mac_address}}">
+              </td>
+              <td>
+                <div class="control">
+                  <div class="select">
+                    <select name="Location" required="required">
+                      <option value="" disabled selected></option>
+                      <option>OSS Office</option>
+                      <option>SAT Office</option>
+                      <option>OSS Cage</option>
+                      <option>On Person</option>
+                    </select>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="control">
+                  <div class="select">
+                    <select name="assigned" required="required">
+                      <option value="" disabled selected></option>
+                      <option>Yes</option>
+                      <option>No</option>
+                    </select>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <input class="input is-info is-narrow" type="text" placeholder="Assigned to?" name="Assigned_to" value="{{laptop_update.assigned_to}}">
+              </td>
+              <td>
+                <button class="button is-info is-rounded">Save</button>
+              </td>
+            </form>
+          </table>
+      </div>
+
+
+{% endblock %}

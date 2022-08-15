@@ -7,7 +7,6 @@ from project import db
 
 class Laptops(db.Model):
     __bind_key__ = 'Site_db'
-    __table_args__ = {'extend_existing': True} 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
     manufactor = db.Column(db.String(50))
@@ -24,7 +23,6 @@ class Laptops(db.Model):
 
 class Desktops(db.Model):
     __bind_key__ = 'Site_db'
-    __table_args__ = {'extend_existing': True} 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
     manufactor = db.Column(db.String(50))
@@ -38,7 +36,6 @@ class Desktops(db.Model):
 
 class Mobile_Phone(db.Model):
     __bind_key__ = 'Site_db'
-    __table_args__ = {'extend_existing': True} 
     id = db.Column(db.Integer, primary_key=True)
     manufactor = db.Column(db.String(50))
     model = db.Column(db.String(50))
@@ -46,21 +43,17 @@ class Mobile_Phone(db.Model):
     cpu = db.Column(db.String(50))
     storage = db.Column(db.String(50))
     operating_system = db.Column(db.String(50))
-    assigned_to = db.Column(db.String(30))
     location = db.Column(db.String(50))
 
 class SimCards(db.Model):
     __bind_key__ = 'Site_db'
-    __table_args__ = {'extend_existing': True} 
     id = db.Column(db.Integer, primary_key=True)
     provider = db.Column(db.String(50))
-    assigned_to = db.Column(db.String(30))
-    location = db.Column(db.String(50))
     amount = db.Column(db.Integer)
+    location = db.Column(db.String(50))
 
 class Monitors(db.Model):
     __bind_key__ = 'Site_db'
-    __table_args__ = {'extend_existing': True} 
     id = db.Column(db.Integer, primary_key=True)
     manufactor = db.Column(db.String(50))
     model = db.Column(db.String(50))
@@ -73,7 +66,6 @@ class Monitors(db.Model):
 
 class Printers(db.Model):
     __bind_key__ = 'Site_db'
-    __table_args__ = {'extend_existing': True} 
     id = db.Column(db.Integer, primary_key=True)
     manufactor = db.Column(db.String(50))
     model = db.Column(db.String(50))
@@ -82,7 +74,6 @@ class Printers(db.Model):
 
 class Tools(db.Model):
     __bind_key__ = 'Site_db'
-    __table_args__ = {'extend_existing': True} 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
     type = db.Column(db.String(50))
@@ -92,7 +83,6 @@ class Tools(db.Model):
 
 class Accessories(db.Model):
     __bind_key__ = 'Site_db'
-    __table_args__ = {'extend_existing': True} 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
     type = db.Column(db.String(50))

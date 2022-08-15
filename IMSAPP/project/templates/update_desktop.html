@@ -4,7 +4,7 @@
 {% block content %}
 <div style="position: center;">
   <a>
-    <img src="https://img.icons8.com/ios-filled/150/000000/laptop.png"/>
+    <img src="https://img.icons8.com/external-prettycons-solid-prettycons/150/000000/external-pc-tower-devices-prettycons-solid-prettycons.png"/>
   </a>
 </div>
   <div class="column is-narrow">
@@ -39,49 +39,47 @@
                 <th>Operating System</th>
                 <th>Mac Address</th>
                 <th>Location</th>
-                <th>Assigned?</th>
-                <th>Assigned to?</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              {% for la in laptop %}
+              {% for da in desktop %}
                 <tr>
                   <td>
-                    <button class="button is-success is-rounded" href="/update{{la.id}}">Save</button>
+                    <button class="button is-success is-rounded" href="/update_desktop{{la.id}}">Save</button>
                   </td>
                 </tr>
               {% endfor %}
             </tbody>
-            <form action="/update/{{laptop_update.id}}" method="POST">
+            <form action="/update_desktop/{{desktop_update.id}}" method="POST">
               <td>
                 <label class="checkbox">
                   <disabled>
                 </label> 
               </td>
               <td>
-                <input class="input is-info is-narrow" type="text" placeholder="Name" name="Name" value="{{laptop_update.name}}">
+                <input class="input is-info is-narrow" type="text" placeholder="Name" name="Name" value="{{desktop_update.name}}">
               </td>
               <td>
-                <input class="input is-info is-narrow" type="text" placeholder="Manufacturer" name="Manufacturer" value="{{laptop_update.manufactor}}">
+                <input class="input is-info is-narrow" type="text" placeholder="Manufacturer" name="Manufacturer" value="{{desktop_update.manufactor}}">
               </td>
               <td>
-                <input class="input is-info is-narrow" type="text" placeholder="Model" name="Model" value="{{laptop_update.model}}">
+                <input class="input is-info is-narrow" type="text" placeholder="Model" name="Model" value="{{desktop_update.model}}">
               </td>
               <td>
-                <input class="input is-info is-narrow" type="text" placeholder="CPU" name="CPU" value="{{laptop_update.cpu}}">
+                <input class="input is-info is-narrow" type="text" placeholder="CPU" name="CPU" value="{{desktop_update.cpu}}">
               </td>
               <td>
-                <input class="input is-info is-narrow" type="text" placeholder="RAM" name="RAM" value="{{laptop_update.ram}}">
+                <input class="input is-info is-narrow" type="text" placeholder="RAM" name="RAM" value="{{desktop_update.ram}}">
               </td>
               <td>
-                <input class="input is-info is-narrow" type="text" placeholder="Storage" name="Storage" value="{{laptop_update.storage}}">
+                <input class="input is-info is-narrow" type="text" placeholder="Storage" name="Storage" value="{{desktop_update.storage}}">
               </td>
               <td>
-                <input class="input is-info is-narrow" type="text" placeholder="OS" name="Operating_System" value="{{laptop_update.operating_system}}">
+                <input class="input is-info is-narrow" type="text" placeholder="OS" name="Operating_System" value="{{desktop_update.operating_system}}">
               </td>
               <td>
-                <input class="input is-info is-narrow" type="text" placeholder="Mac:Address" name="Mac_address" value="{{laptop_update.mac_address}}">
+                <input class="input is-info is-narrow" type="text" placeholder="Mac:Address" name="Mac_address" value="{{desktop_update.mac_address}}">
               </td>
               <td>
                 <div class="control">
@@ -95,20 +93,6 @@
                     </select>
                   </div>
                 </div>
-              </td>
-              <td>
-                <div class="control">
-                  <div class="select">
-                    <select name="assigned" required="required">
-                      <option value="" disabled selected></option>
-                      <option>Yes</option>
-                      <option>No</option>
-                    </select>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <input class="input is-info is-narrow" type="text" placeholder="Assigned to?" name="Assigned_to" value="{{laptop_update.assigned_to}}">
               </td>
               <td>
                 <button class="button is-info is-rounded">Save</button>

@@ -27,19 +27,18 @@
       <div class="container">
         <br>
         <td>
-            <div class="control">
-            </div>
-          </td>
-          <br>
-        <h3>DASHBOARD</h3>
+        <div class="control"></div>
+        </td>
+        <h3>Hi {{current_user.name}}! Welcome to the IMS Dashboard.</h3>
         <h4>click any of the cards to redirect to table pages :)</h4>
-          <div class="row">
+        <br>
+        <div class="row">
             <a href="laptops" style="text-decoration: none">
                 <div class="col-lg-3 mb-5">
                     <div class="card">
                         <div class="card-body">
                             <h1 class="card-text">
-                              {{ laptop_count }}
+                            {{ laptop_count }}
                             </h1>
                             <h5 class="card-text">
                                 Laptops
@@ -50,43 +49,43 @@
                             <h6>
                             {{laptop_unassigned}} Unssigned
                             </h6>
-                            <a></a>
+                        
+            </a>
+        </div>
+
+        </div>
+        </div>
+            <a href="desktops" style="text-decoration: none">
+                <div class="col-lg-3 mb-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <h1 class="card-text">
+                            {{ desktop_count }}
+                            </h1>
+                            <h5 class="card-text">
+                                Desktops
+                            </h5>
                             </a>
                         </div>
                     </div>
                 </div>
             </a>
-
-              <div class="col-lg-3 mb-5">
-                <div class="card">
-                    <img class="card-img-top" src="" alt="">
-  
-                    <div class="card-body">
-                        <h1 class="card-text">
-                          3
-                        </h1>
-                        <h5 class="card-text">
-                            Desktops
-                        </h5>
+            <a href="mobile_phones" style="text-decoration: none">
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h1 class="card-text">
+                            {{ mobile_phone_count }}
+                            </h1>
+                            <h5 class="card-text">
+                                Mobile Phones
+                            </h5>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 mb-5">
-              <div class="card">
-                  <img class="card-img-top" src="" alt="">
-
-                  <div class="card-body">
-                      <h1 class="card-text">
-                        4
-                      </h1>
-                      <h5 class="card-text">
-                          Mobile Phones
-                      </h5>
-
-                  </div>
-              </div>
-          </div>
-          <div class="col-lg-3 mb-5">
+            </a>
+          <div class="col-lg-3">
             <div class="card">
                 <img class="card-img-top" src="" alt="">
 
@@ -100,9 +99,86 @@
                 </div>
             </div>
         </div>
-          </div>
-      </div>
-    
+    </div>
+    <div class="container">
+          <div class="row">
+            <a href="laptops" style="text-decoration: none">
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h1 class="card-text">
+                            {{ laptop_count }}
+                            </h1>
+                            <h5 class="card-text">
+                                Monitors
+                            </h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="desktops" style="text-decoration: none">
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h1 class="card-text">
+                            {{ desktop_count }}
+                            </h1>
+                            <h5 class="card-text">
+                                Printers
+                            </h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="mobile_phones" style="text-decoration: none">
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h1 class="card-text">
+                            {{ mobile_phone_count }}
+                            </h1>
+                            <h5 class="card-text">
+                                Tools
+                            </h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </a>
+          <div class="col-lg-3">
+            <div class="card">
+                <img class="card-img-top" src="" alt="">
+
+                <div class="card-body">
+                    <h1 class="card-text">
+                      2
+                    </h1>
+                    <h5 class="card-text">
+                        Accessories
+                    </h5>
+                </div>
+            </div>
+        <br>
+        <br>
+        </div>
+        
+        <a class="col-lg-3" href="https://auth.datto.com/login">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Datto_logo.svg/1920px-Datto_logo.svg.png" alt="Datto" width="170" height="400">
+        </a>
+        <a class="col-lg-3" href="https://endpoint.microsoft.com/#home">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Microsoft_Azure.svg/1024px-Microsoft_Azure.svg.png" alt="Endpoint" width="80" height="80">
+        </a>
+        <a class="col-lg-3" href="https://ocadosupport.atlassian.net/jira">
+            <img src="https://aptgadget.com/wp-content/uploads/2018/10/jira-alternatives-765x374.png" alt="Jira" width="170" height="100">
+        </a>
+        <a class="col-lg-3" href="">
+            <img src="https://brewsteracademyblogs.files.wordpress.com/2018/01/googledrivefilestream.png" alt="GDRIVE" width="70" height="70">
+        </a>
+        </div>
+        <br>
+        <h6>Quick Links</h6>
       <!-- Optional JavaScript -->
       <!-- jQuery first, then Popper.js, then Bootstrap JS -->
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
