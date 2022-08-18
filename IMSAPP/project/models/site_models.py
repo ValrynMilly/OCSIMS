@@ -34,6 +34,19 @@ class Desktops(db.Model):
     mac_address = db.Column(db.String(100))
     location = db.Column(db.String(50))
 
+class Tablets(db.Model):
+    __bind_key__ = 'Site_db'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50))
+    manufactor = db.Column(db.String(50))
+    model = db.Column(db.String(50))
+    cpu = db.Column(db.String(50))
+    ram = db.Column(db.String(50))
+    storage = db.Column(db.String(50))
+    operating_system = db.Column(db.String(50))
+    mac_address = db.Column(db.String(100))
+    location = db.Column(db.String(50))
+
 class Mobile_Phone(db.Model):
     __bind_key__ = 'Site_db'
     id = db.Column(db.Integer, primary_key=True)
@@ -52,25 +65,14 @@ class SimCards(db.Model):
     amount = db.Column(db.Integer)
     location = db.Column(db.String(50))
 
-class Monitors(db.Model):
+class Peripherals(db.Model):
     __bind_key__ = 'Site_db'
     id = db.Column(db.Integer, primary_key=True)
+    type = db.Column(db.String(50))
     manufactor = db.Column(db.String(50))
     model = db.Column(db.String(50))
-    max_res = db.Column(db.String(50))
-    panel_type = db.Column(db.String(50))
-    refresh_rate = db.Column(db.String(50))
-    inputs = db.Column(db.String(100))
-    mac_address = db.Column(db.String(100))
     location = db.Column(db.String(100))
-
-class Printers(db.Model):
-    __bind_key__ = 'Site_db'
-    id = db.Column(db.Integer, primary_key=True)
-    manufactor = db.Column(db.String(50))
-    model = db.Column(db.String(50))
-    mac_address = db.Column(db.String(100))
-    location = db.Column(db.String(100))
+    amount = db.Column(db.Integer)
 
 class Tools(db.Model):
     __bind_key__ = 'Site_db'
@@ -78,7 +80,6 @@ class Tools(db.Model):
     name = db.Column(db.String(50))
     type = db.Column(db.String(50))
     manufacturer = db.Column(db.String(50))
-    description = db.Column(db.String(100))
     amount = db.Column(db.Integer)
 
 class Accessories(db.Model):
@@ -89,3 +90,8 @@ class Accessories(db.Model):
     manufacturer = db.Column(db.String(50))
     description = db.Column(db.String(100))
     amount = db.Column(db.Integer)
+
+class Site_Objectives(db.Model):
+    __bind_key__ = 'Site_db'
+    id = db.Column(db.Integer, primary_key=True)
+    Todofield = db.Column(db.String(50))

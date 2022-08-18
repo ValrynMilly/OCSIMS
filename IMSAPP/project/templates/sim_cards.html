@@ -2,14 +2,14 @@
 <!-- Javascript imports, this page will be extended later on but I need some bootstrap functionality for update functionality -->
 
 {% block content %}
-<div style="position: center;">
+<div class="column is-half">
   <a>
-    <img src="https://img.icons8.com/ios-filled/150/000000/smartphone.png"/>
+    <img src="https://img.icons8.com/ios-filled/200/000000/sim-card--v2.png"/>
   </a>
 </div>
 
   <div class="column is-narrow">
-    <div class="column is-full">
+    <div class="column is-half">
       <aside class="menu">
         <p class="menu-label">
           Quick Links
@@ -29,70 +29,51 @@
 
     
         </div class="table-container">
-          <table class="table is-bordered is-hoverable is-fullwidth" id="laptopTable" style="margin-bottom:20px; margin-right: 10%; color:rgb(105, 105, 105);">
+          <table class="table mx-auto is-bordered is-hoverable" id="laptopTable" style="margin-bottom:10px; margin-right: 25%; color:rgb(105, 105, 105);">
             <thead>
               <tr>
-                <td colspan="4">
+                <td colspan="2">
                   <input class="input is-primary" id="myInput" type="text" placeholder="Search Here" onkeyup="tableSearch()">
                 </td>
-                <td colspan="4" style="text-align: center; font-size: 120%;">
-                  This is the Mobile Phones table, simply fill in the fields and click submit.
+                <td colspan="3" style="text-align: center; font-size: 120%;">
+                  This is the Sim Cards table, simply fill in the fields and click submit.
                 </td>
               </tr>
               <tr>
-                <th>Manufacturer</th>
-                <th>Model</th>
-                <th>Display</th>
-                <th>CPU</th>
-                <th>Storage</th>
-                <th>Operating System</th>
-                <th style="text-align: center;">Location</th>
-                <th style="text-align: center;">Action</th>
+                <th class="is-narrow" style="text-align: center;">Provider</th>
+                <th class="is-narrow" style="text-align: center;">Amount</th>
+                <th class="is-narrow" style="text-align: center;">Location</th>
+                <th class="is-narrow" style="text-align: center;">Action</th>
               </tr>
             </thead>
             <tbody>
-              {% for mp in mobile_phones %}
+              {% for sc in sim_cards %}
                 <tr>
-                  <td>{{ mp.manufactor }}</td>
-                  <td>{{ mp.model }}</td>
-                  <td>{{ mp.display }}</td>
-                  <td>{{ mp.cpu }}</td>
-                  <td>{{ mp.storage }}</td>
-                  <td>{{ mp.operating_system }}</td>
-                  <td>{{ mp.location }}</td>
-                  <td style="text-align: center;">
-                    <a href="update_mobile_phone/{{ mp.id }}">
+                  <td class="is-narrow" style="text-align: center;">{{ sc.provider }}</td>
+                  <td class="is-narrow" style="text-align: center;">{{ sc.amount }}</td>
+                  <td class="is-narrow" style="text-align: center;">{{ sc.location }}</td>
+                  <td class="is-narrow" style="text-align: center;">
+                    <a class="is-narrow" href="update_sim_cards/{{ sc.id }}">
                       <img src="https://img.icons8.com/color-glass/30/000000/edit--v1.png"/>
                     </a>
-                    <a href="delete_mobile_phone/{{ mp.id }}">
+                    <a class="is-narrow" href="delete_sim_card/{{ sc.id }}">
                       <img src="https://img.icons8.com/color/32/000000/delete-forever.png"/>
                     </a>
                   </td>
                 </tr>
               {% endfor %}
             </tbody>
-            <form action="/mobile_phones" method="POST">
-              <td>
-                <input class="input is-info is-narrow" type="text" placeholder="Manufacturer" name="Manufacturer">
+            <form action="/sim_cards" method="POST">
+              <td class="is-narrow">
+                <input class="input is-info" type="text" placeholder="Provider" name="Provider">
               </td>
-              <td>
-                <input class="input is-info is-narrow" type="text" placeholder="Model" name="Model">
+              <td class="is-narrow">
+                <input class="input is-info" type="text" placeholder="Amount" name="Amount">
               </td>
-              <td>
-                <input class="input is-info is-narrow" type="text" placeholder="Display" name="Display">
               </td>
-              <td>
-                <input class="input is-info is-narrow" type="text" placeholder="CPU" name="CPU">
-              </td>
-              <td>
-                <input class="input is-info is-narrow" type="text" placeholder="Storage" name="Storage">
-              </td>
-              <td>
-                <input class="input is-info is-narrow" type="text" placeholder="OS" name="Operating_System">
-              </td>
-              <td>
+              <td class="is-narrow">
                 <div class="control">
-                  <div class="select">
+                  <div class="select is-fullwidth">
                     <select  name="Location">
                       <option>OSS Office</option>
                       <option>SAT Office</option>
@@ -102,8 +83,8 @@
                   </div>
                 </div>
               </td>
-              <td>
-                <button class="button is-info is-rounded">Submit</button>
+              <td class="has-text-centered is-narrow">
+                <button class="button is-info is-rounded is-narrow">Submit</button>
               </td>
             </form>
           </table>

@@ -2,13 +2,17 @@ from urllib import request
 from importlib import reload
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user
-from sqlalchemy import insert
+from sqlalchemy import insert, and_
+from sqlalchemy.sql import func, select
 from . import db
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
-from .models.site_models import Laptops, Desktops, Mobile_Phone
+from .models.site_models import *
 
 main = Blueprint('main', __name__)
+
+engine = db.create_engine
+
 
 @main.route('/')
 def index():
@@ -22,11 +26,12 @@ def dashboard():
     laptop_unassigned = Laptops.query.filter(Laptops.assigned == 'No').count()
     desktop_count = Desktops.query.count()
     mobile_phone_count = Mobile_Phone.query.count()
-    db.session.commit()
+    sim_card_count = SimCards.query.with_entities(func.sum(SimCards.amount).label('total')).first().total
     return render_template('dashboard.html',name=current_user.name, 
-    laptop_count=laptop_count, 
-    laptop_assigned=laptop_assigned, 
-    laptop_unassigned=laptop_unassigned, desktop_count=desktop_count, mobile_phone_count=mobile_phone_count)
+    laptop_count=laptop_count, laptop_assigned=laptop_assigned, laptop_unassigned=laptop_unassigned, 
+    desktop_count=desktop_count, 
+    mobile_phone_count=mobile_phone_count, 
+    sim_card_count=sim_card_count)
 
 ########################## INVENTORY ROUTES/FUNCTIONS ##########################
 
@@ -108,6 +113,26 @@ def mobile_phones():
     else:
         mobile_phones = Mobile_Phone.query
         return render_template('mobile_phones.html', mobile_phones=mobile_phones)
+
+@main.route('/sim_cards', methods=['POST', 'GET'])
+@login_required
+def sim_cards():
+    if request.method == "POST":
+        new_sim_card_form_provider = request.form['Provider']
+        new_sim_card_form_amount = request.form['Amount']
+        new_sim_card_form_location = request.form['Location']
+        try:
+            new_sim_card = SimCards(provider=new_sim_card_form_provider, 
+            amount=new_sim_card_form_amount, location=new_sim_card_form_location)
+            db.session.add(new_sim_card)
+            db.session.commit()
+            return redirect('/sim_cards')
+        except:
+            "There was an error adding your data"
+    else:
+        sim_cards = SimCards.query
+        return render_template('sim_cards.html', sim_cards=sim_cards)
+
 
 
 ########################## UPDATE FUNCTIONS ##########################
@@ -211,5 +236,16 @@ def delete_mobile_phone(id):
         db.session.delete(mobile_phone_delete)
         db.session.commit()
         return redirect('/mobile_phones')
+    except:
+        return "There was an issue deleting that laptop im sorry :("
+
+@main.route('/delete_sim_card/<int:id>')
+@login_required
+def delete_sim_card(id):
+    sim_card_delete = SimCards.query.get_or_404(id)
+    try:
+        db.session.delete(sim_card_delete)
+        db.session.commit()
+        return redirect('/sim_cards')
     except:
         return "There was an issue deleting that laptop im sorry :("

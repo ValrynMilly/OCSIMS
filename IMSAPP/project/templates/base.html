@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html style="font-family: sans-serif;">
 
 <head>
     <meta charset="utf-8">
@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <section class="hero is-white is-fullheight">
+    <section class="hero is-white is-fullwidth is-fullheight">
 
         <div class="hero-head">
             <nav class="navbar">
@@ -23,10 +23,10 @@
                             {% if current_user.is_authenticated %}
 
                             <form action="/location" method="POST">
-                                <div class="navbar-item">
+                                <div class="navbar-item"  style="color: #9a41da;">
                                    <div class="select is-default is-rounded">
-                                       <select  name="site_select" id="site_select">
-                                         <option value="" disabled selected>Select Site</option>
+                                       <select   style="color: #9a41da;" name="site_select" id="site_select">
+                                         <option value="" disabled selected >Select Site</option>
                                          <option value="www.google.com">Hatfield</option>
                                          <option value="">Dordon</option>
                                          <option value="">Andover</option>
@@ -50,32 +50,31 @@
                                </script>
 
                             {% endif %}
-                            <a href="{{ url_for('main.index') }}" class="navbar-item">
+                            <a href="{{ url_for('main.index') }}" class="navbar-item" style="color: #9a41da;">
                                 Home
                             </a>
                             {% if current_user.is_authenticated %}
-                            <a href="{{ url_for('main.dashboard') }}" class="navbar-item">
+                            <a href="{{ url_for('main.dashboard') }}" class="navbar-item" style="color: #9a41da;">
                                 Dashboard
                             </a>
                             {% endif %}
                             {% if not current_user.is_authenticated %}
-                            <a href="{{ url_for('auth.login') }}" class="navbar-item">
+                            <a href="{{ url_for('auth.login') }}" class="navbar-item" style="color: #9a41da;">
                                 Login
                             </a>
                             <!--Another link can be added here for signup-->
                             {% endif %}
                             {% if current_user.is_authenticated %}
-                               <a href="{{ url_for('auth.logout') }}" class="navbar-item">
+                               <a href="{{ url_for('auth.logout') }}" class="navbar-item" style="color: #9a41da">
                                 Logout
                                 </a>
-                               
                             {% endif %}
                         </div>
                     </div>
             </nav>
         </div>
 
-        <div class="hero-body">
+        <div class="hero-body" style="font-family: sans-serif;">
             <div class="container has-text-centered">
                {% block content %}
                {% endblock %}

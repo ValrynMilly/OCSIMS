@@ -1,204 +1,177 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="columns">
-  
-    <head>
-      <!-- Required meta tags -->
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, 
-          initial-scale=1, shrink-to-fit=no">
-    
-      <!-- Bootstrap CSS -->
-      <link rel="stylesheet" href=
-  "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity=
-  "sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-          crossorigin="anonymous">
-    
-      <link rel="stylesheet" href=
-  "https://use.fontawesome.com/releases/v5.4.1/css/all.css"
-          integrity=
-  "sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
-           crossorigin="anonymous">
-  </head>
-    
-  <body>
-      <div class="container">
-        <br>
-        <td>
-        <div class="control"></div>
-        </td>
-        <h3>Hi {{current_user.name}}! Welcome to the IMS Dashboard.</h3>
-        <h4>click any of the cards to redirect to table pages :)</h4>
-        <br>
-        <div class="row">
-            <a href="laptops" style="text-decoration: none">
-                <div class="col-lg-3 mb-5">
-                    <div class="card">
-                        <div class="card-body">
-                            <h1 class="card-text">
-                            {{ laptop_count }}
-                            </h1>
-                            <h5 class="card-text">
-                                Laptops
-                            </h5>
-                            <h6>
-                             {{laptop_assigned}} Assigned
-                            </h6>
-                            <h6>
-                            {{laptop_unassigned}} Unssigned
-                            </h6>
-                        
-            </a>
-        </div>
 
-        </div>
-        </div>
-            <a href="desktops" style="text-decoration: none">
-                <div class="col-lg-3 mb-5">
-                    <div class="card">
-                        <div class="card-body">
-                            <h1 class="card-text">
-                            {{ desktop_count }}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <!-- Bulma Version 0.9.0-->
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
+    <link rel="stylesheet" type="text/css" href="../css/admin.css">
+</head>
+
+<body>
+    <div class="container" >
+        <div class="columns is-centered">
+            <div class="column is-9">
+                <section class="hero welcome is-small">
+                    <div class="hero-body box box-shadow is-bold" style="background-color: #b857fd;">
+                        <div class="container">
+                            <p style="font-size: 30pt; color: white;">
+                            Hello, {{current_user.name}}
+                            </p>
+                            <h1 class="subtitle" style="color: white;">
+                                Welcome to the site dashboard.
                             </h1>
-                            <h5 class="card-text">
-                                Desktops
-                            </h5>
-                            </a>
                         </div>
                     </div>
-                </div>
-            </a>
-            <a href="mobile_phones" style="text-decoration: none">
-                <div class="col-lg-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h1 class="card-text">
-                            {{ mobile_phone_count }}
-                            </h1>
-                            <h5 class="card-text">
-                                Mobile Phones
-                            </h5>
-                            </a>
+                </section>
+                <section class="info-tiles">
+                    <br>
+                    <div class="tile is-ancestor has-text-centered">
+                        <a href="laptops" class="tile is-parent">
+                            <article class="tile is-child box">
+                                <p class="title">{{laptop_count}}</p>
+                                <p class="subtitle">Laptops</p>
+                                {{laptop_assigned}} Assigned
+                                {{laptop_unassigned}} Unassigned
+                            </article>
+                        </a>
+                        <a href="desktops" class="tile is-parent">
+                            <article class="tile is-child box">
+                                <p class="title">0</p>
+                                <p class="subtitle">Desktops</p>
+                            </article>
+                        </a>
+                        <a href="tablets" class="tile is-parent">
+                            <article class="tile is-child box">
+                                <p class="title">0</p>
+                                <p class="subtitle">Tablets</p>
+                            </article>
+                        </a>
+                        <a href="mobile_phones" class="tile is-parent">
+                            <article class="tile is-child box">
+                                <p class="title">0</p>
+                                <p class="subtitle">Mobile Phones</p>
+                            </article>
+                        </a>
+                    </div>
+                    <div class="tile is-ancestor has-text-centered">
+                        <a href="peripherals" class="tile is-parent">
+                            <article class="tile is-child box">
+                                <p class="title">0</p>
+                                <p class="subtitle">Peripherals</p>
+                            </article>
+                        </a>
+                        <a href="tools" class="tile is-parent">
+                            <article class="tile is-child box">
+                                <p class="title">0</p>
+                                <p class="subtitle">Tools</p>
+                            </article>
+                        </a>
+                        <a href="accessories" class="tile is-parent">
+                            <article class="tile is-child box">
+                                <p class="title">0</p>
+                                <p class="subtitle">Accessories</p>
+                            </article>
+                        </a>
+                        <a href="sim_cards" class="tile is-parent">
+                            <article class="tile is-child box">
+                                <p class="title">0</p>
+                                <p class="subtitle">Sim Cards</p>
+                            </article>
+                        </a>
+                    </div>
+                </section>
+                <div class="columns">
+                    <div class="column is-6">
+                        <div class="card events-card">
+                            <header class="card-header">
+                                <p class="card-header-title">
+                                    To-do list
+                                </p>
+                                <a href="#" class="card-header-icon" aria-label="more options">
+                </a>
+                            </header>
+                            <div class="card-table">
+                                <div class="content">
+                                    <table class="table is-fullwidth is-hoverable is-striped">
+                                        <tbody>
+                                            <tr>
+                                                <td width="5%"><i class="fa fa-flag-o"></i></td>
+                                                <td>Simple task to acomplish</td>
+                                                <td class="level-right"><a class="button is-small is-danger" href="#">Delete</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <td class="field">
+                                        <input class="input is-info is-small" type="text" placeholder="" name="" style="width: 82%; ">
+                                    </td>
+                                    <td class="has-text-centered is-narrow">
+                                        <button class="button is-narrow is-small" style="background-color: #9a41da; color: white;">Submit</button>
+                                    </td>
+                                </div>
+                                
+                            </div>
+                            <br>
                         </div>
                     </div>
-                </div>
-            </a>
-          <div class="col-lg-3">
-            <div class="card">
-                <img class="card-img-top" src="" alt="">
-
-                <div class="card-body">
-                    <h1 class="card-text">
-                      2
-                    </h1>
-                    <h5 class="card-text">
-                        Sim-Cards
-                    </h5>
+                    <div class="column is-6">
+                        <div class="card">
+                            <header class="card-header">
+                                <p class="card-header-title">
+                                    Inventory Search
+                                </p>
+                                <a href="#" class="card-header-icon" aria-label="more options">
+                </a>
+                            </header>
+                            <div class="card-content">
+                                <div class="content">
+                                    <div class="control has-icons-left has-icons-right">
+                                        <input class="input is-large" type="text" placeholder="">
+                                        <span class="icon is-medium is-left">
+                      <i class="fa fa-search" style="color: #b857fd;"></i>
+                    </span>
+                                        <span class="icon is-medium is-right">
+                      <i class="fa fa-check" style="color: #b857fd;"></i>
+                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="card">
+                            <header class="card-header">
+                                <p class="card-header-title">
+                                    User Search
+                                </p>
+                                <a href="#" class="card-header-icon" aria-label="more options">
+                </a>
+                            </header>
+                            <div class="card-content">
+                                <div class="content">
+                                    <div class="control has-icons-left has-icons-right">
+                                        <input class="input is-large" type="text" placeholder="">
+                                        <span class="icon is-medium is-left">
+                      <i class="fa fa-search" style="color: #b857fd;"></i>
+                    </span>
+                                        <span class="icon is-medium is-right">
+                      <i class="fa fa-check" style="color: #b857fd;"></i>
+                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container">
-          <div class="row">
-            <a href="laptops" style="text-decoration: none">
-                <div class="col-lg-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h1 class="card-text">
-                            {{ laptop_count }}
-                            </h1>
-                            <h5 class="card-text">
-                                Monitors
-                            </h5>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="desktops" style="text-decoration: none">
-                <div class="col-lg-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h1 class="card-text">
-                            {{ desktop_count }}
-                            </h1>
-                            <h5 class="card-text">
-                                Printers
-                            </h5>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="mobile_phones" style="text-decoration: none">
-                <div class="col-lg-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h1 class="card-text">
-                            {{ mobile_phone_count }}
-                            </h1>
-                            <h5 class="card-text">
-                                Tools
-                            </h5>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </a>
-          <div class="col-lg-3">
-            <div class="card">
-                <img class="card-img-top" src="" alt="">
+    <script async type="text/javascript" src="../js/bulma.js"></script>
+</body>
 
-                <div class="card-body">
-                    <h1 class="card-text">
-                      2
-                    </h1>
-                    <h5 class="card-text">
-                        Accessories
-                    </h5>
-                </div>
-            </div>
-        <br>
-        <br>
-        </div>
-        
-        <a class="col-lg-3" href="https://auth.datto.com/login">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Datto_logo.svg/1920px-Datto_logo.svg.png" alt="Datto" width="170" height="400">
-        </a>
-        <a class="col-lg-3" href="https://endpoint.microsoft.com/#home">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Microsoft_Azure.svg/1024px-Microsoft_Azure.svg.png" alt="Endpoint" width="80" height="80">
-        </a>
-        <a class="col-lg-3" href="https://ocadosupport.atlassian.net/jira">
-            <img src="https://aptgadget.com/wp-content/uploads/2018/10/jira-alternatives-765x374.png" alt="Jira" width="170" height="100">
-        </a>
-        <a class="col-lg-3" href="">
-            <img src="https://brewsteracademyblogs.files.wordpress.com/2018/01/googledrivefilestream.png" alt="GDRIVE" width="70" height="70">
-        </a>
-        </div>
-        <br>
-        <h6>Quick Links</h6>
-      <!-- Optional JavaScript -->
-      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-              integrity=
-  "sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-              crossorigin="anonymous">
-      </script>
-    
-      <script src=
-  "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-              integrity=
-  "sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-              crossorigin="anonymous">
-      </script>
-    
-      <script src=
-  "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-              integrity=
-  "sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-              crossorigin="anonymous">
-      </script>
-  </body>
+</html>
 {% endblock %}
