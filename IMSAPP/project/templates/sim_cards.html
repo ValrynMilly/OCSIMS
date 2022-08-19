@@ -1,103 +1,152 @@
+<html lang="en-uk">
 {% extends "base.html" %}
 <!-- Javascript imports, this page will be extended later on but I need some bootstrap functionality for update functionality -->
 
 {% block content %}
-<div class="column is-half">
-  <a>
-    <img src="https://img.icons8.com/ios-filled/200/000000/sim-card--v2.png"/>
-  </a>
-</div>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+  <!-- Bulma Version 0.9.0-->
+  <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
+  <link href="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../css/admin.css">
+</head>
 
-  <div class="column is-narrow">
-    <div class="column is-half">
-      <aside class="menu">
-        <p class="menu-label">
-          Quick Links
-        </p>
-        <ul class="menu-list">
-          <li><a>Laptops</a></li>
-          <li><a>Desktops</a></li>
-          <li><a>Mobile Phones</a></li>
-          <li><a>Sim Cards</a></li>
-          <li><a>Monitors</a></li>
-          <li><a>Printers</a></li>
-          <li><a>Accessories</a></li>
-        </ul>
-      </aside>
-    </div>
-  </div>
 
-    
-        </div class="table-container">
-          <table class="table mx-auto is-bordered is-hoverable" id="laptopTable" style="margin-bottom:10px; margin-right: 25%; color:rgb(105, 105, 105);">
-            <thead>
-              <tr>
-                <td colspan="2">
-                  <input class="input is-primary" id="myInput" type="text" placeholder="Search Here" onkeyup="tableSearch()">
-                </td>
-                <td colspan="3" style="text-align: center; font-size: 120%;">
-                  This is the Sim Cards table, simply fill in the fields and click submit.
-                </td>
-              </tr>
-              <tr>
-                <th class="is-narrow" style="text-align: center;">Provider</th>
-                <th class="is-narrow" style="text-align: center;">Amount</th>
-                <th class="is-narrow" style="text-align: center;">Location</th>
-                <th class="is-narrow" style="text-align: center;">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for sc in sim_cards %}
-                <tr>
-                  <td class="is-narrow" style="text-align: center;">{{ sc.provider }}</td>
-                  <td class="is-narrow" style="text-align: center;">{{ sc.amount }}</td>
-                  <td class="is-narrow" style="text-align: center;">{{ sc.location }}</td>
-                  <td class="is-narrow" style="text-align: center;">
-                    <a class="is-narrow" href="update_sim_cards/{{ sc.id }}">
-                      <img src="https://img.icons8.com/color-glass/30/000000/edit--v1.png"/>
-                    </a>
-                    <a class="is-narrow" href="delete_sim_card/{{ sc.id }}">
-                      <img src="https://img.icons8.com/color/32/000000/delete-forever.png"/>
-                    </a>
-                  </td>
-                </tr>
-              {% endfor %}
-            </tbody>
-            <form action="/sim_cards" method="POST">
-              <td class="is-narrow">
-                <input class="input is-info" type="text" placeholder="Provider" name="Provider">
-              </td>
-              <td class="is-narrow">
-                <input class="input is-info" type="text" placeholder="Amount" name="Amount">
-              </td>
-              </td>
-              <td class="is-narrow">
-                <div class="control">
-                  <div class="select is-fullwidth">
-                    <select  name="Location">
-                      <option>OSS Office</option>
-                      <option>SAT Office</option>
-                      <option>OSS Cage</option>
-                      <option>On Person</option>
-                    </select>
-                  </div>
-                </div>
-              </td>
-              <td class="has-text-centered is-narrow">
-                <button class="button is-info is-rounded is-narrow">Submit</button>
-              </td>
-            </form>
-          </table>
+  
+<body>
+  <div class="container">
+        <div class="hero-body box box-shadow is-bold" style="background-color: #b857fd; height: 20pt;">
+          <div>
+            <a>
+              <img src="https://img.icons8.com/ios-filled/200/000000/sim-card--v2.png" style="height: 40pt;"/>
+            </a>
+          </div>
+          <div class="container">
+              <p style="font-size: 30pt; color: white;">
+                Sim Cards
+              </p>
+          </div>
+          <div>
+            <a>
+              <img src="https://img.icons8.com/ios-filled/200/000000/sim-card--v2.png" style="height: 40pt;"/>
+            </a>
+          </div>
         </div>
-      </div>
-    </div>
+        <table class="is-fullwidth is-bordered">
+          <td style="padding-right: 40pt;">
+            <input class="input is-primary" id="myInput" type="text" placeholder="Search Here" onkeyup="tableSearch()">
+          </td>
+          <form action="/sim_cards" method="POST">
+            <td class="" style="padding-right: 10pt;">
+              <input class="input is-warning" type="text" placeholder=" Input Provider" name="Provider" required>
+            </td>
+            <td class="" style="padding-right: 10pt;">
+              <input class="input is-warning" type="text" placeholder=" Input Amount" name="Amount" required>
+            </td>
+            <td class="" style="padding-right: 10pt;">
+              <div class="control">
+                <div class="select is-warning" required>
+                  <select name="Location">
+                    <option>OSS Office</option>
+                    <option>SAT Office</option>
+                    <option>OSS Cage</option>
+                    <option>On Person</option>
+                  </select>
+                </div>
+              </div>
+            </td>
+            <td class="has-text-centered is-narrow" style="padding-right: 10pt;">
+              <button class="button is-info is-narrow">Submit Entry</button>
+            </td>
+            <td class="has-text-centered is-narrow">
+              <button class="button is-success is-narrow" onclick="tableExport()">Export CSV</button>
+            </td>
+          </form>
+        </table>
+      <br>
+          
+        
+        <table class="table is-bordered is-hoverable"
+            id="table"
+            data-pagination="true"
+            data-id-field="id"
+            data-page-list="[1, 5, 10, 100, all]">
+          <thead>
+              <tr>
+              </tr>
+              <tr class="is-fullwidth has-text-centered">
+                <th class="" style="text-align: center;" data-field="provider" data-sortable="true">Provider</th>
+                <th class="" style="text-align: center;" data-field="amount" data-sortable="true">Amount</th>
+                <th class="" style="text-align: center;" data-field="location" data-sortable="true">Location</th>
+                <th class="" style="text-align: center;" data-field="action">Action</th>
+              </tr>
+          </thead>
+          <tbody>
+            {% for sc in sim_cards %}
+              <tr>
+                <td class="">{{ sc.provider }}</td>
+                <td class="">{{ sc.amount }}</td>
+                <td class="">{{ sc.location }}</td>
+                <td class="">
+                  <a class="is-narrow" href="update_sim_cards/{{ sc.id }}">
+                    <img src="https://img.icons8.com/color-glass/30/000000/edit--v1.png"/>
+                  </a>
+                  &nbsp;
+                  <a class="is-narrow" href="delete_sim_card/{{ sc.id }}">
+                    <img src="https://img.icons8.com/color/32/000000/delete-forever.png"/>
+                  </a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+      </table>
+      
+      <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+      <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
+      <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.js"></script>
+      <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/extensions/export/bootstrap-table-export.min.js"></script>
+  </div>
+  </body>
+</div>
+</html>
+    
 
-    <script type="application/javascript">
-      function tableSearch() {
+        <script>    
+          $(function() {
+            $('#table').bootstrapTable()
+          })
+          var $table = $('#table')
+          
+          function initTable() {
+            $table.bootstrapTable('destroy').bootstrapTable({
+              height: 500,
+              locale: $('#locale').val(),
+              columns: [
+                [{
+                  
+                  colspan: 4,
+                  align: 'center'
+                }]
+              ]
+            })
+          }
+          $(function() {
+            initTable()
+          
+            $('#locale').change(initTable)
+          })
+          function tableExport() {
+            return $('#table').tableExport({type:'csv'});
+          }
+          function tableSearch() {
           var input, filter, found, table, tr, td, i, j;
           input = document.getElementById("myInput");
           filter = input.value.toUpperCase();
-          table = document.getElementById("laptopTable");
+          table = document.getElementById("table");
           tr = table.getElementsByTagName("tr");
           for (i = 2; i < tr.length; i++) {
               td = tr[i].getElementsByTagName("td");
@@ -114,6 +163,5 @@
               }
           }
       }
-    </script>
-
+        </script>
 {% endblock %}
