@@ -15,7 +15,7 @@
 
         <div class="hero-head">
             <nav class="navbar">
-                <a class="navbar-item" href="https://support.oca.do">
+                <a class="navbar-item" href="https://www.ocadogroup.com/">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Ocado_Group_Logo.svg" alt="OCSIMS" width="112" height="28">
                 </a>
                     <div id="navbarMenuHeroA" class="navbar-menu">
@@ -76,10 +76,47 @@
         </div>
 
         <div class="hero-body" style="font-family: sans-serif;">
+            {% if current_user.is_authenticated %}
+            <aside class="menu" style="margin-bottom: 10%;">
+                <p class="menu-label">
+                  General
+                </p>
+                <ul class="menu-list">
+                  <li><a  href="dashboard">Dashboard</a></li>
+                </ul>
+                <p class="menu-label">
+                  Assets
+                </p>
+                <ul class="menu-list">
+                  <li>
+                    <a class="is-active" style="background-color: #9a41da; color: white;">Manage Devices</a>
+                    <ul>
+                      <li><a href="laptops">Laptops</a></li>
+                      <li><a href="desktops">Desktops</a></li>
+                      <li><a href="tablets">Tablets</a></li>
+                      <li><a href="mobile_phones">Mobile Phones</a></li>
+                      <li><a href="peripherals">Peripherals</a></li>
+                      <li><a href="tools">Tools</a></li>
+                      <li><a href="accessories">Accessories</a></li>
+                      <li><a href="sim_cards">Sim Cards</a></li>
+                    </ul>
+                  </li>
+                </ul>
+                <p class="menu-label">
+                  Audit
+                </p>
+                <ul class="menu-list">
+                  <li><a>Users</a></li>
+                  <li><a>Device Log</a></li>
+                </ul>
+              </aside>
+            {% endif %}
+            
             <div class="container has-text-centered">
                {% block content %}
                {% endblock %}
             </div>
+            
         </div>
     </section>
 </body>
