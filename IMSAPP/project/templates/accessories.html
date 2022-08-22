@@ -12,6 +12,7 @@
   <!-- Bulma Version 0.9.0-->
   <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
   <link href="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../css/admin.css">
 </head>
 
 
@@ -21,58 +22,49 @@
         <div class="hero-body box box-shadow is-bold" style="background-color: #b857fd; height: 20pt;">
           <div>
             <a>
-              <img src="https://img.icons8.com/external-prettycons-solid-prettycons/150/000000/external-pc-tower-devices-prettycons-solid-prettycons.png" style="height: 40pt;"/>
+              <img src="https://img.icons8.com/pastel-glyph/200/000000/stationery--v1.png" style="height: 40pt;"/>
             </a>
           </div>
           <div class="container">
               <p style="font-size: 30pt; color: white;">
-                Desktops
+                Accessories
               </p>
           </div>
           <div>
             <a>
-              <img src="https://img.icons8.com/external-prettycons-solid-prettycons/150/000000/external-pc-tower-devices-prettycons-solid-prettycons.png" style="height: 40pt;"/>
+              <img src="https://img.icons8.com/ios-filled/200/000000/micropore-tape.png" style="height: 40pt;"/>
             </a>
           </div>
         </div>
         <table class="is-fullwidth is-bordered">
-          <td style="padding-right: 30pt; width: 11.5%;">
+          <td style="padding-right: 40pt;">
             <input class="input is-primary" id="myInput" type="text" placeholder="Search Here" onkeyup="tableSearch()">
           </td>
-          <form action="/desktops" method="POST">
-            <td>
-              <label class="checkbox">
-                <disabled>
-              </label> 
+          <form action="/accessories" method="POST">
+            <td class="" style="padding-right: 10pt;">
+              <input class="input is-info" type="text" placeholder="Name" name="Name" required>
             </td>
-            <td  style="padding-right: 5pt;">
-              <input class="input is-info is-narrow" type="text" placeholder="Name" name="Name">
-            </td>
-            <td style="padding-right: 5pt;">
-              <input class="input is-info is-narrow" type="text" placeholder="Manufacturer" name="Manufacturer">
-            </td>
-            <td style="padding-right: 5pt;">
-              <input class="input is-info is-narrow" type="text" placeholder="Model" name="Model">
-            </td>
-            <td style="padding-right: 5pt;">
-              <input class="input is-info is-narrow" type="text" placeholder="CPU" name="CPU">
-            </td>
-            <td style="padding-right: 5pt;">
-              <input class="input is-info is-narrow" type="text" placeholder="RAM" name="RAM">
-            </td>
-            <td style="padding-right: 5pt;">
-              <input class="input is-info is-narrow" type="text" placeholder="Storage" name="Storage">
-            </td>
-            <td style="padding-right: 5pt;">
-              <input class="input is-info is-narrow" type="text" placeholder="OS" name="Operating_System">
-            </td>
-            <td style="padding-right: 5pt;">
-              <input class="input is-info is-narrow" type="text" placeholder="Mac:Address" name="Mac_address">
-            </td>
-            <td style="padding-right: 5pt;">
+            <td class="" style="padding-right: 10pt;">
               <div class="control">
-                <div class="select">
-                  <select  name="Location">
+                <div class="select is-info" >
+                  <select name="Type">
+                    <option>Computer Accessory</option>
+                    <option>Desk Item</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+              </div>
+            </td>
+            <td class="" style="padding-right: 10pt;">
+              <input class="input is-info" type="text" placeholder="Manufacturer" name="Manufacturer" required>
+            </td>
+            <td class="" style="padding-right: 10pt;">
+              <input class="input is-info" type="text" placeholder="Amount" name="Amount" required>
+            </td>
+            <td class="" style="padding-right: 10pt;">
+              <div class="control">
+                <div class="select is-info" >
+                  <select name="Location">
                     <option>OSS Office</option>
                     <option>SAT Office</option>
                     <option>OSS Cage</option>
@@ -81,8 +73,8 @@
                 </div>
               </div>
             </td>
-            <td style="padding-right: 30pt;">
-              <button class="button is-info is-rounded">Submit</button>
+            <td class="has-text-centered is-narrow" style="padding-right: 10pt;">
+              <button class="button is-info is-narrow">Submit Entry</button>
             </td>
           </form>
           <td class="has-text-centered is-narrow">
@@ -92,44 +84,37 @@
       <br>
           
         
-      <table class="table is-bordered is-hoverable"
-          id="table"
-          data-pagination="true"
-          data-id-field="id"
-          data-page-list="[1, 5, 10, 100, all]">
+        <table class="table is-bordered is-hoverable"
+            id="table"
+            data-pagination="true"
+            data-id-field="id"
+            data-page-list="[1, 5, 10, 100, all]">
           <thead>
-            <tr>
-            </tr>
-            <tr>
-              <th data-sortable="true">Name</th>
-              <th data-sortable="true">Manufacturer</th>
-              <th data-sortable="true">Model</th>
-              <th data-sortable="true">CPU</th>
-              <th data-sortable="true">RAM</th>
-              <th data-sortable="true">Storage</th>
-              <th data-sortable="true">Operating System</th>
-              <th>Mac:Address</th>
-              <th  data-sortable="true" style="text-align: center;">Location</th>
-              <th style="text-align: center;">Action</th>
-            </tr>
+              <tr>
+              </tr>
+              <tr>
+                <th class="" style="text-align: center;" data-field="Name" data-sortable="Name">Name</th>
+                <th class="" style="text-align: center;" data-field="type" data-sortable="true">Type</th>
+                <th class="" style="text-align: center;" data-field="Manufacturer" data-sortable="true">Manufacturer</th>
+                <th class="" style="text-align: center;" data-field="Amount" data-sortable="true">Amount</th>
+                <th class="" style="text-align: center;" data-field="Location" data-sortable="true">Location</th>
+                <th class="" style="text-align: center;" data-field="action">Action</th>
+              </tr>
           </thead>
           <tbody>
-            {% for da in desktop %}
+            {% for ac in accessories %}
               <tr>
-                <td>{{ da.name }}</td>
-                <td>{{ da.manufactor }}</td>
-                <td>{{ da.model }}</td>
-                <td>{{ da.cpu }}</td>
-                <td>{{ da.ram }}</td>
-                <td>{{ da.storage }}</td>
-                <td>{{ da.operating_system }}</td>
-                <td>{{ da.mac_address }}</td>
-                <td>{{ da.location }}</td>
-                <td style="text-align: center;">
-                  <a href="update_desktop/{{ da.id }}">
+                <td class="">{{ ac.name }}</td>
+                <td class="">{{ ac.type }}</td>
+                <td class="">{{ ac.manufacturer }}</td>
+                <td class="">{{ ac.amount }}</td>
+                <td class="">{{ ac.location }}</td>
+                <td class="">
+                  <a href="update_accessory/{{ ac.id }}">
                     <img src="https://img.icons8.com/sf-ultralight-filled/30/12B886/visible.png"/>
                   </a>
-                  <a href="delete_desktop/{{ da.id }}">
+                  &nbsp;
+                  <a href="delete_accessory/{{ ac.id }}">
                     <img src="https://img.icons8.com/color/32/000000/delete-forever.png"/>
                   </a>
                 </td>
@@ -143,7 +128,7 @@
       <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.js"></script>
       <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/extensions/export/bootstrap-table-export.min.js"></script>
   </div>
-</body>
+  </body>
 </div>
 </html>
     
@@ -161,7 +146,7 @@
               columns: [
                 [{
                   
-                  colspan: 10,
+                  colspan: 6,
                   align: 'center'
                 }]
               ]

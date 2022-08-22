@@ -10,7 +10,6 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <!-- Bulma Version 0.9.0-->
     <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
-    <link rel="stylesheet" type="text/css" href="../css/admin.css">
 </head>
 
 <body>
@@ -42,19 +41,19 @@
                         </a>
                         <a href="desktops" class="tile is-parent">
                             <article class="tile is-child box">
-                                <p class="title">0</p>
+                                <p class="title">{{desktop_count}}</p>
                                 <p class="subtitle">Desktops</p>
                             </article>
                         </a>
                         <a href="tablets" class="tile is-parent">
                             <article class="tile is-child box">
-                                <p class="title">0</p>
+                                <p class="title">{{tablet_count}}</p>
                                 <p class="subtitle">Tablets</p>
                             </article>
                         </a>
                         <a href="mobile_phones" class="tile is-parent">
                             <article class="tile is-child box">
-                                <p class="title">0</p>
+                                <p class="title">{{mobile_phone_count}}</p>
                                 <p class="subtitle">Mobile Phones</p>
                             </article>
                         </a>
@@ -62,13 +61,13 @@
                     <div class="tile is-ancestor has-text-centered">
                         <a href="peripherals" class="tile is-parent">
                             <article class="tile is-child box">
-                                <p class="title">0</p>
+                                <p class="title">{{peripherals_count}}</p>
                                 <p class="subtitle">Peripherals</p>
                             </article>
                         </a>
                         <a href="tools" class="tile is-parent">
                             <article class="tile is-child box">
-                                <p class="title">0</p>
+                                <p class="title">{{tools_count}}</p>
                                 <p class="subtitle">Tools</p>
                             </article>
                         </a>
@@ -98,21 +97,29 @@
                             </header>
                             <div class="card-table">
                                 <div class="content">
-                                    <table class="table is-fullwidth is-hoverable is-striped">
+                                    <table class="table is-hoverable is-striped">
                                         <tbody>
-                                            <tr>
-                                                <td width="5%"><i class="fa fa-flag-o"></i></td>
-                                                <td>Simple task to acomplish</td>
-                                                <td class="level-right"><a class="button is-small is-danger" href="#">Delete</a></td>
-                                            </tr>
+                                            {% for ob in site_objectives %}
+                                              <tr style="text-align: left;">
+                                                <td class="">{{ ob.Todofield }}</td>
+                                                <td class="" style="width: 15%;">
+                                                  &nbsp;
+                                                  <a href="delete_objective/{{ ob.id }}">
+                                                    <img src="https://img.icons8.com/color/32/000000/delete-forever.png"/>
+                                                  </a>
+                                                </td>
+                                              </tr>
+                                            {% endfor %}
                                         </tbody>
                                     </table>
+                                    <form action="/site_objectives" method="POST">
                                     <td class="field">
-                                        <input class="input is-info is-small" type="text" placeholder="" name="" style="width: 82%; ">
+                                        <input class="input is-info is-small" type="text" placeholder="Enter Objective" name="Objective" style="width: 82%; ">
                                     </td>
-                                    <td class="has-text-centered is-narrow">
+                                    <td class="">
                                         <button class="button is-narrow is-small" style="background-color: #9a41da; color: white;">Submit</button>
-                                    </td>
+                                    </td>  
+                                    </form>
                                 </div>
                                 
                             </div>
@@ -170,7 +177,6 @@
             </div>
         </div>
     </div>
-    <script async type="text/javascript" src="../js/bulma.js"></script>
 </body>
 
 </html>

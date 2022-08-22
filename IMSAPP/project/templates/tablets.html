@@ -21,17 +21,17 @@
         <div class="hero-body box box-shadow is-bold" style="background-color: #b857fd; height: 20pt;">
           <div>
             <a>
-              <img src="https://img.icons8.com/ios-filled/150/000000/laptop.png" style="height: 40pt;"/>
+              <img src="https://img.icons8.com/external-icongeek26-glyph-icongeek26/150/000000/external-tablet-devices-icongeek26-glyph-icongeek26.png" style="height: 40pt;"/>
             </a>
           </div>
           <div class="container">
               <p style="font-size: 30pt; color: white;">
-                Laptops
+                Tablets
               </p>
           </div>
           <div>
             <a>
-              <img src="https://img.icons8.com/ios-filled/150/000000/laptop.png" style="height: 40pt;"/>
+              <img src="https://img.icons8.com/external-icongeek26-glyph-icongeek26/150/000000/external-tablet-devices-icongeek26-glyph-icongeek26.png" style="height: 40pt;"/>
             </a>
           </div>
         </div>
@@ -39,7 +39,7 @@
           <td style="padding-right: 30pt; width: 11.5%;">
             <input class="input is-primary" id="myInput" type="text" placeholder="Search Here" onkeyup="tableSearch()">
           </td>
-          <form action="/laptops" method="POST">
+          <form action="/tablets" method="POST">
             <td style="padding-right: 5pt;">
               <input class="input is-info is-narrow" type="text" placeholder="Name" name="Name">
             </td>
@@ -124,24 +124,24 @@
             </tr>
         </thead>
         <tbody>
-          {% for la in laptop %}
+          {% for ta in tablet %}
             <tr>
-              <td>{{ la.name }}</td>
-              <td>{{ la.manufactor }}</td>
-              <td>{{ la.model }}</td>
-              <td>{{ la.cpu }}</td>
-              <td>{{ la.ram }}</td>
-              <td>{{ la.storage }}</td>
-              <td>{{ la.operating_system }}</td>
-              <td>{{ la.mac_address }}</td>
-              <td>{{ la.location }}</td>
-              <td>{{ la.assigned }}</td>
-              <td>{{ la.assigned_to }}</td>
+              <td>{{ ta.name }}</td>
+              <td>{{ ta.manufactor }}</td>
+              <td>{{ ta.model }}</td>
+              <td>{{ ta.cpu }}</td>
+              <td>{{ ta.ram }}</td>
+              <td>{{ ta.storage }}</td>
+              <td>{{ ta.operating_system }}</td>
+              <td>{{ ta.mac_address }}</td>
+              <td>{{ ta.location }}</td>
+              <td>{{ ta.assigned }}</td>
+              <td>{{ ta.assigned_to }}</td>
               <td style="text-align: center;">
-                <a href="update_laptop/{{ la.id }}">
+                <a href="update_tablet/{{ ta.id }}">
                   <img src="https://img.icons8.com/sf-ultralight-filled/30/12B886/visible.png"/>
                 </a>
-                <a href="delete_laptop/{{ la.id }}">
+                <a href="delete_tablet/{{ ta.id }}">
                   <img src="https://img.icons8.com/color/32/000000/delete-forever.png"/>
                 </a>
               </td>

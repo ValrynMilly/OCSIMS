@@ -42,14 +42,14 @@
           </td>
           <form action="/sim_cards" method="POST">
             <td class="" style="padding-right: 10pt;">
-              <input class="input is-warning" type="text" placeholder=" Input Provider" name="Provider" required>
+              <input class="input is-info" type="text" placeholder=" Input Provider" name="Provider" required>
             </td>
             <td class="" style="padding-right: 10pt;">
-              <input class="input is-warning" type="text" placeholder=" Input Amount" name="Amount" required>
+              <input class="input is-info" type="text" placeholder=" Input Amount" name="Amount" required>
             </td>
             <td class="" style="padding-right: 10pt;">
               <div class="control">
-                <div class="select is-warning" required>
+                <div class="select is-info" >
                   <select name="Location">
                     <option>OSS Office</option>
                     <option>SAT Office</option>
@@ -62,10 +62,10 @@
             <td class="has-text-centered is-narrow" style="padding-right: 10pt;">
               <button class="button is-info is-narrow">Submit Entry</button>
             </td>
-            <td class="has-text-centered is-narrow">
-              <button class="button is-success is-narrow" onclick="tableExport()">Export CSV</button>
-            </td>
           </form>
+          <td class="has-text-centered is-narrow">
+            <button class="button is-success is-narrow" onclick="tableExport()">Export CSV</button>
+          </td>
         </table>
       <br>
           
@@ -93,7 +93,7 @@
                 <td class="">{{ sc.location }}</td>
                 <td class="">
                   <a class="is-narrow" href="update_sim_cards/{{ sc.id }}">
-                    <img src="https://img.icons8.com/color-glass/30/000000/edit--v1.png"/>
+                    <img src="https://img.icons8.com/sf-ultralight-filled/30/12B886/visible.png"/>
                   </a>
                   &nbsp;
                   <a class="is-narrow" href="delete_sim_card/{{ sc.id }}">

@@ -2,16 +2,11 @@ from urllib import request
 from importlib import reload
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user
-from sqlalchemy import insert, and_
-from sqlalchemy.sql import func, select
+from sqlalchemy.sql import func
 from . import db
-from sqlalchemy import create_engine
-from sqlalchemy.orm import Session
 from .models.site_models import *
 
 main = Blueprint('main', __name__)
-
-engine = db.create_engine
 
 
 @main.route('/')
@@ -25,13 +20,33 @@ def dashboard():
     laptop_assigned = Laptops.query.filter(Laptops.assigned == 'Yes').count()
     laptop_unassigned = Laptops.query.filter(Laptops.assigned == 'No').count()
     desktop_count = Desktops.query.count()
+    tablet_count = Tablets.query.count()
     mobile_phone_count = Mobile_Phone.query.count()
+    peripherals_count = Peripherals.query.count()
     sim_card_count = SimCards.query.with_entities(func.sum(SimCards.amount).label('total')).first().total
+    tools_count = Tools.query.count()
+    site_objectives = Site_Objectives.query
     return render_template('dashboard.html',name=current_user.name, 
     laptop_count=laptop_count, laptop_assigned=laptop_assigned, laptop_unassigned=laptop_unassigned, 
-    desktop_count=desktop_count, 
-    mobile_phone_count=mobile_phone_count, 
-    sim_card_count=sim_card_count)
+    desktop_count=desktop_count,
+    tablet_count=tablet_count, 
+    mobile_phone_count=mobile_phone_count,
+    peripherals_count=peripherals_count, 
+    sim_card_count=sim_card_count,
+    tools_count=tools_count, site_objectives=site_objectives)
+
+@main.route('/site_objectives', methods=['POST', 'GET'])
+@login_required
+def site_objectives():
+    if request.method == "POST":
+        objective = request.form['Objective']
+        try:
+            new_objective = Site_Objectives(Todofield=objective)
+            db.session.add(new_objective)
+            db.session.commit()
+            return redirect('/dashboard')
+        except:
+            return "There was an issue adding that objective im sorry :("
 
 ########################## INVENTORY ROUTES/FUNCTIONS ##########################
 
@@ -133,7 +148,106 @@ def sim_cards():
         sim_cards = SimCards.query
         return render_template('sim_cards.html', sim_cards=sim_cards)
 
+@main.route('/tablets', methods=['POST', 'GET'])
+@login_required
+def tablets():
+    if request.method == "POST":
+        new_tablet_name = request.form['Name']
+        new_tablet_manufacturer = request.form['Manufacturer']
+        new_tablet_model = request.form['Model']
+        new_tablet_cpu = request.form['CPU']
+        new_tablet_ram = request.form['RAM']
+        new_tablet_storage = request.form['Storage']
+        new_tablet_OS = request.form['Operating_System']
+        new_tablet_ma = request.form['Mac_address']
+        new_tablet_location = request.form.get('Location')
+        new_tablet_assigned = request.form.get('assigned')
+        new_tablet_assigned_to = request.form['Assigned_to']
+        try:
+            new_tablet = Tablets(name=new_tablet_name, manufactor=new_tablet_manufacturer, 
+            model=new_tablet_model, cpu=new_tablet_cpu, ram=new_tablet_ram, storage=new_tablet_storage, 
+            operating_system=new_tablet_OS, mac_address = new_tablet_ma, location=new_tablet_location,
+            assigned=new_tablet_assigned, assigned_to=new_tablet_assigned_to)
+            db.session.add(new_tablet)
+            db.session.commit()
+            return redirect('/tablets')
+        except:
+            "There was an error adding your data"
+    else:
+        tablet = Tablets.query
+        return render_template('tablets.html', tablet=tablet)
 
+@main.route('/peripherals', methods=['POST', 'GET'])
+@login_required
+def peripherals():
+    if request.method == "POST":
+        new_peripheral_form_type = request.form.get('Type')
+        new_peripheral_form_manufacturer = request.form['Manufacturer']
+        new_peripheral_form_model = request.form['Model']
+        new_peripheral_form_amount = request.form['Amount']
+        new_peripheral_form_location = request.form.get('Location')
+        try:
+            new_peripheral = Peripherals(type=new_peripheral_form_type,
+            manufactor = new_peripheral_form_manufacturer,
+            model = new_peripheral_form_model,
+            amount = new_peripheral_form_amount, 
+            location=new_peripheral_form_location)
+            db.session.add(new_peripheral)
+            db.session.commit()
+            return redirect('/peripherals')
+        except:
+            "There was an error adding your data"
+    else:
+        peripherals = Peripherals.query
+        return render_template('peripherals.html', peripherals=peripherals)
+
+@main.route('/tools', methods=['POST', 'GET'])
+@login_required
+def tools():
+    if request.method == "POST":
+        new_tool_form_name = request.form['Name']
+        new_tool_form_type = request.form.get('Type')
+        new_tool_form_manufacturer = request.form['Manufacturer']
+        new_tool_form_amount = request.form['Amount']
+        new_tool_form_location = request.form.get('Location')
+        try:
+            new_tool = Tools(name=new_tool_form_name,
+            type = new_tool_form_type,
+            manufacturer = new_tool_form_manufacturer,
+            amount = new_tool_form_amount,
+            location = new_tool_form_location)
+            db.session.add(new_tool)
+            db.session.commit()
+            return redirect('/tools')
+        except:
+            "There was an error adding your data"
+    else:
+        tools = Tools.query
+        return render_template('tools.html', tools=tools)
+
+@main.route('/accessories', methods=['POST', 'GET'])
+@login_required
+def accessories():
+    if request.method == "POST":
+        new_accessory_form_name = request.form['Name']
+        new_accessory_form_type = request.form.get('Type')
+        new_accessory_form_manufacturer = request.form['Manufacturer']
+        new_accessory_form_amount = request.form['Amount']
+        new_accessory_form_location = request.form.get('Location')
+        try:
+            new_accessory = Accessories(name=new_accessory_form_name,
+            type = new_accessory_form_type,
+            manufacturer = new_accessory_form_manufacturer,
+            amount = new_accessory_form_amount,
+            location = new_accessory_form_location)
+            db.session.add(new_accessory)
+            db.session.commit()
+            return redirect('/accessories')
+        except:
+            "There was an error adding your data"
+    else:
+        accessories = Accessories.query
+        return render_template('accessories.html', accessories=accessories)
 
 ########################## UPDATE FUNCTIONS ##########################
 
@@ -226,7 +340,7 @@ def delete_desktop(id):
         db.session.commit()
         return redirect('/desktops')
     except:
-        return "There was an issue deleting that laptop im sorry :("
+        return "There was an issue deleting that desktop im sorry :("
 
 @main.route('/delete_mobile_phone/<int:id>')
 @login_required
@@ -237,7 +351,7 @@ def delete_mobile_phone(id):
         db.session.commit()
         return redirect('/mobile_phones')
     except:
-        return "There was an issue deleting that laptop im sorry :("
+        return "There was an issue deleting that mobile im sorry :("
 
 @main.route('/delete_sim_card/<int:id>')
 @login_required
@@ -248,4 +362,59 @@ def delete_sim_card(id):
         db.session.commit()
         return redirect('/sim_cards')
     except:
-        return "There was an issue deleting that laptop im sorry :("
+        return "There was an issue deleting that sim-card im sorry :("
+
+@main.route('/delete_tablet/<int:id>')
+@login_required
+def delete_tablet(id):
+    tablet_delete = Tablets.query.get_or_404(id)
+    try:
+        db.session.delete(tablet_delete)
+        db.session.commit()
+        return redirect('/tablets')
+    except:
+        return "There was an issue deleting that tablet im sorry :("
+
+@main.route('/delete_peripheral/<int:id>')
+@login_required
+def delete_peripheral(id):
+    peripheral_delete = Peripherals.query.get_or_404(id)
+    try:
+        db.session.delete(peripheral_delete)
+        db.session.commit()
+        return redirect('/peripherals')
+    except:
+        return "There was an issue deleting that Peripheral im sorry :("
+
+@main.route('/delete_tool/<int:id>')
+@login_required
+def delete_tool(id):
+    tool_delete = Tools.query.get_or_404(id)
+    try:
+        db.session.delete(tool_delete)
+        db.session.commit()
+        return redirect('/tools')
+    except:
+        return "There was an issue deleting that Tool im sorry :("
+
+@main.route('/delete_accessory/<int:id>')
+@login_required
+def delete_accessory(id):
+    accessory_delete = Accessories.query.get_or_404(id)
+    try:
+        db.session.delete(accessory_delete)
+        db.session.commit()
+        return redirect('/accessories')
+    except:
+        return "There was an issue deleting that Accessory im sorry :("
+
+@main.route('/delete_objective/<int:id>')
+@login_required
+def delete_objective(id):
+    objective_delete = Site_Objectives.query.get_or_404(id)
+    try:
+        db.session.delete(objective_delete)
+        db.session.commit()
+        return redirect('/dashboard')
+    except:
+        return "There was an issue deleting that Accessory im sorry :("
