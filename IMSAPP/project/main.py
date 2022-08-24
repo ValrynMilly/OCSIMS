@@ -297,6 +297,28 @@ def update_desktop(id):
     else:
         return render_template('update_desktop.html', desktop_update=desktop_update)
 
+#@main.route('/update_tablet/<int:id>', methods=['POST', 'GET'])
+#@login_required
+#def update_tablet(id):
+#    desktop_update = Desktops.query.get_or_404(id)
+#    if request.method == "POST":
+#        desktop_update.model = request.form['Name']
+#        desktop_update.manufactor = request.form['Manufacturer']
+#        desktop_update.model = request.form['Model']
+#        desktop_update.cpu = request.form['CPU']
+#        desktop_update.ram = request.form['RAM']
+#        desktop_update.storage = request.form['Storage']
+#        desktop_update.operating_system = request.form['Operating_System']
+#        desktop_update.mac_address = request.form['Mac_address']
+#        desktop_update.location = request.form.get('Location')
+#        try:
+#            db.session.commit()
+#            return redirect('/tablets')
+#        except:
+#            return "There was an issue updating that laptop 404 IM SO SORRY! I SUCK :("
+#    else:
+#        return render_template('update_desktop.html', desktop_update=desktop_update)
+
 @main.route('/update_mobile_phone/<int:id>', methods=['POST', 'GET'])
 @login_required
 def update_mobile_phone(id):
