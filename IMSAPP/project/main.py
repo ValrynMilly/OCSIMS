@@ -22,7 +22,7 @@ def dashboard():
     desktop_count = Desktops.query.count()
     tablet_count = Tablets.query.count()
     mobile_phone_count = Mobile_Phone.query.count()
-    peripherals_count = Peripherals.query.count()
+    peripherals_count = Peripherals.query.with_entities(func.sum(Peripherals.amount).label('total')).first().total
     sim_card_count = SimCards.query.with_entities(func.sum(SimCards.amount).label('total')).first().total
     tools_count = Tools.query.count()
     site_objectives = Site_Objectives.query
@@ -297,47 +297,72 @@ def update_desktop(id):
     else:
         return render_template('update_desktop.html', desktop_update=desktop_update)
 
-#@main.route('/update_tablet/<int:id>', methods=['POST', 'GET'])
-#@login_required
-#def update_tablet(id):
-#    desktop_update = Desktops.query.get_or_404(id)
-#    if request.method == "POST":
-#        desktop_update.model = request.form['Name']
-#        desktop_update.manufactor = request.form['Manufacturer']
-#        desktop_update.model = request.form['Model']
-#        desktop_update.cpu = request.form['CPU']
-#        desktop_update.ram = request.form['RAM']
-#        desktop_update.storage = request.form['Storage']
-#        desktop_update.operating_system = request.form['Operating_System']
-#        desktop_update.mac_address = request.form['Mac_address']
-#        desktop_update.location = request.form.get('Location')
-#        try:
-#            db.session.commit()
-#            return redirect('/tablets')
-#        except:
-#            return "There was an issue updating that laptop 404 IM SO SORRY! I SUCK :("
-#    else:
-#        return render_template('update_desktop.html', desktop_update=desktop_update)
-
-@main.route('/update_mobile_phone/<int:id>', methods=['POST', 'GET'])
+@main.route('/update_tablet/<int:id>', methods=['POST', 'GET'])
 @login_required
-def update_mobile_phone(id):
-    mobile_phone_update = Mobile_Phone.query.get_or_404(id)
+def update_tablet(id):
+    tablet_update = Tablets.query.get_or_404(id)
     if request.method == "POST":
-        mobile_phone_update.manufactor = request.form['Manufacturer']
-        mobile_phone_update.model = request.form['Model']
-        mobile_phone_update.display = request.form['Display']
-        mobile_phone_update.cpu = request.form['CPU']
-        mobile_phone_update.storage = request.form['Storage']
-        mobile_phone_update.operating_system = request.form['Operating_System']
-        mobile_phone_update.location = request.form.get('Location')
+        tablet_update.model = request.form['Name']
+        tablet_update.manufactor = request.form['Manufacturer']
+        tablet_update.model = request.form['Model']
+        tablet_update.cpu = request.form['CPU']
+        tablet_update.ram = request.form['RAM']
+        tablet_update.storage = request.form['Storage']
+        tablet_update.operating_system = request.form['Operating_System']
+        tablet_update.mac_address = request.form['Mac_address']
+        tablet_update.location = request.form.get('Location')
+        tablet_update.assigned = request.form.get('assigned')
+        tablet_update.assigned_to = request.form['Assigned_to']
+        try:
+            db.session.commit()
+            return redirect('/tablets')
+        except:
+            return "There was an issue updating that laptop 404 IM SO SORRY! I SUCK :("
+    else:
+        return render_template('update_tablet.html', tablet_update=tablet_update)
+
+
+@main.route('/update_mobile/<int:id>', methods=['POST', 'GET'])
+@login_required
+def update_mobile(id):
+    mobile_update = Mobile_Phone.query.get_or_404(id)
+    if request.method == "POST":
+        mobile_update.manufactor = request.form['Manufacturer']
+        mobile_update.model = request.form['Model']
+        mobile_update.display = request.form['Display']
+        mobile_update.cpu = request.form['CPU']
+        mobile_update.storage = request.form['Storage']
+        mobile_update.operating_system = request.form['Operating_System']
+        mobile_update.location = request.form.get('Location')
         try:
             db.session.commit()
             return redirect('/mobile_phones')
         except:
             return "There was an issue updating that laptop 404 IM SO SORRY! I SUCK :("
     else:
-        return render_template('update_mobile_phone.html', mobile_phone_update=mobile_phone_update)
+        return render_template('update_mobile.html', mobile_update=mobile_update)
+
+@main.route('/update_peripheral/<int:id>', methods=['POST', 'GET'])
+@login_required
+def update_peripheral(id):
+    peripheral_update = Peripherals.query.get_or_404(id)
+    if request.method == "POST":
+        peripheral_update.type = request.form.get('Type')
+        peripheral_update.manufactor = request.form['Manufacturer']
+        peripheral_update.model = request.form['Model']
+        peripheral_update.location = request.form.get('Location')
+        peripheral_update.amount = request.form['Amount']
+        peripheral_update.notes = request.form['Notes']
+        try:
+            db.session.commit()
+            return redirect('/peripherals')
+        except:
+            return "There was an issue updating that laptop 404 IM SO SORRY! I SUCK :("
+    else:
+        return render_template('update_peripheral.html', peripheral_update=peripheral_update)
+
+
+
 
 
 ########################## DELETE FUNCTIONS ##########################

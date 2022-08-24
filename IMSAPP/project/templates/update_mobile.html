@@ -13,7 +13,7 @@
           </div>
           <div class="container">
               <p style="font-size: 30pt; color: white;">
-                {{desktop_update.name}}
+                Selected Mobile
               </p>
           </div>
           <div>
@@ -23,59 +23,46 @@
           </div>
         </div>
         <table class="is-fullwidth is-bordered">
-          <form action="/update_desktop/{{desktop_update.id}}" method="POST">
+          <form action="/update_mobile/{{mobile_update.id}}" method="POST">
             <section class="info-tiles">
               <br>
               <div class="box" style="font-family: sans-serif;">
-                <p class="subtitle" style="font-size: x-large; color: Black;">View / Edit everything about your selected desktop</p>
+                <p class="subtitle" style="font-size: x-large; color: Black;">View / Edit everything about your selected mobile</p>
               <div class="tile is-ancestor has-text-centered">
-                  <a class="tile is-parent" style="text-align: center;">
-                    <article class="tile is-child box" style="width: 50pt;">
-                      <p class="subtitle">Name</p>
-                      <input class="input is-fullwidth has-text-centered" type="text" placeholder="name" name="Name" value="{{desktop_update.name}}" style="height: 40pt; border-color: #b857fd;">
-                    </article>
-                  </a>
                   <a class="tile is-parent">
                       <article class="tile is-child box" style="width: 50pt;">
                         <p class="subtitle">Make</p>
-                        <input class="input is-narrow has-text-centered" type="text" placeholder="Manufacturer" name="Manufacturer" value="{{desktop_update.manufactor}}" style="height: 40pt; border-color: #b857fd;">
+                        <input class="input is-narrow has-text-centered" type="text" placeholder="Manufacturer" name="Manufacturer" value="{{mobile_update.manufactor}}" style="height: 40pt; border-color: #b857fd;">
                       </article>
                   </a>
                   <a class="tile is-parent">
                     <article class="tile is-child box" style="width: 50pt;">
                       <p class="subtitle">Model</p>
-                      <input class="input is-narrow has-text-centered" type="text" placeholder="Model" name="Model" value="{{desktop_update.model}}" style="height: 40pt; border-color: #b857fd;">
+                      <input class="input is-narrow has-text-centered" type="text" placeholder="Model" name="Model" value="{{mobile_update.model}}" style="height: 40pt; border-color: #b857fd;">
+                    </article>
+                  </a>
+                  <a class="tile is-parent">
+                    <article class="tile is-child box" style="width: 50pt;">
+                      <p class="subtitle">Display</p>
+                      <input class="input is-narrow has-text-centered" type="text" placeholder="Display" name="Display" value="{{mobile_update.display}}" style="height: 40pt; border-color: #b857fd;">
                     </article>
                   </a>
                   <a class="tile is-parent">
                     <article class="tile is-child box" style="width: 50pt;">
                       <p class="subtitle">CPU</p>
-                      <input class="input is-narrow has-text-centered" type="text" placeholder="CPU" name="CPU" value="{{desktop_update.cpu}}" style="height: 40pt; border-color: #b857fd;">
-                    </article>
-                  </a>
-                
-                  <a class="tile is-parent">
-                    <article class="tile is-child box" style="width: 50pt;">
-                      <p class="subtitle">RAM</p>
-                      <input class="input is-narrow has-text-centered" type="text" placeholder="RAM" name="RAM" value="{{desktop_update.ram}}" style="height: 40pt; border-color: #b857fd;">
+                      <input class="input is-narrow has-text-centered" type="text" placeholder="CPU" name="CPU" value="{{mobile_update.cpu}}" style="height: 40pt; border-color: #b857fd;">
                     </article>
                   </a>
                   <a class="tile is-parent">
                     <article class="tile is-child box" style="width: 50pt;">
                       <p class="subtitle">Storage</p>
-                      <input class="input is-narrow has-text-centered" type="text" placeholder="Storage" name="Storage" value="{{desktop_update.storage}}" style="height: 40pt; border-color: #b857fd;">
+                      <input class="input is-narrow has-text-centered" type="text" placeholder="Storage" name="Storage" value="{{mobile_update.storage}}" style="height: 40pt; border-color: #b857fd;">
                     </article>
                   </a>
                   <a class="tile is-parent is-1.2">
                     <article class="tile is-child box">
                       <p class="subtitle">OS</p>
-                      <input class="input is-narrow has-text-centered" type="text" placeholder="OS" name="Operating_System" value="{{desktop_update.operating_system}}" style="height: 40pt; border-color: #b857fd;">
-                    </article>
-                  </a>
-                  <a class="tile is-parent is-2">
-                    <article class="tile is-child box" style="width: 50pt;">
-                      <p class="subtitle">Mac:Address</p>
-                      <input class="input is-narrow has-text-centered" type="text" placeholder="Mac: Address" name="Mac_address" value="{{desktop_update.mac_address}}" style="height: 40pt; border-color: #b857fd;">
+                      <input class="input is-narrow has-text-centered" type="text" placeholder="OS" name="Operating_System" value="{{mobile_update.operating_system}}" style="height: 40pt; border-color: #b857fd;">
                     </article>
                   </a>
                 </div>
@@ -94,8 +81,8 @@
                     </a>
                     <a class="tile is-parent is-10">
                       <article class="tile is-child box" style="width: 50pt;">
-                        <p class="subtitle">Desktop Description/Notes</p>
-                        <textarea class="textarea" placeholder="Notes Here" name="Notes" value="{{desktop_update.notes}}" style=" border-color: #b857fd;"></textarea>
+                        <p class="subtitle">Mobile Description/Notes</p>
+                        <textarea class="textarea" placeholder="Notes Here" name="Notes" value="{{mobile_update.notes}}" style=" border-color: #b857fd;"></textarea>
                       </article>
                     </a>
                   </div>
@@ -104,7 +91,6 @@
                   <br>
                  <button class="button is-large is-primary is-narrow is-rounded">SAVE</button> 
                 </td>
-                
           </section> 
           </form>
         </table>
