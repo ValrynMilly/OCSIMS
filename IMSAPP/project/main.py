@@ -24,7 +24,8 @@ def dashboard():
     mobile_phone_count = Mobile_Phone.query.count()
     peripherals_count = Peripherals.query.with_entities(func.sum(Peripherals.amount).label('total')).first().total
     sim_card_count = SimCards.query.with_entities(func.sum(SimCards.amount).label('total')).first().total
-    tools_count = Tools.query.count()
+    tools_count = Tools.query.with_entities(func.sum(Tools.amount).label('total')).first().total
+    accessory_count = Accessories.query.with_entities(func.sum(Accessories.amount).label('total')).first().total
     site_objectives = Site_Objectives.query
     return render_template('dashboard.html',name=current_user.name, 
     laptop_count=laptop_count, laptop_assigned=laptop_assigned, laptop_unassigned=laptop_unassigned, 
@@ -33,7 +34,9 @@ def dashboard():
     mobile_phone_count=mobile_phone_count,
     peripherals_count=peripherals_count, 
     sim_card_count=sim_card_count,
-    tools_count=tools_count, site_objectives=site_objectives)
+    tools_count=tools_count, 
+    accessory_count = accessory_count,
+    site_objectives=site_objectives)
 
 @main.route('/site_objectives', methods=['POST', 'GET'])
 @login_required
@@ -361,8 +364,43 @@ def update_peripheral(id):
     else:
         return render_template('update_peripheral.html', peripheral_update=peripheral_update)
 
+@main.route('/update_tool/<int:id>', methods=['POST', 'GET'])
+@login_required
+def update_tool(id):
+    tool_update = Tools.query.get_or_404(id)
+    if request.method == "POST":
+        tool_update.name = request.form['Name']
+        tool_update.type = request.form.get('Type')
+        tool_update.manufactor = request.form['Manufacturer']
+        tool_update.location = request.form.get('Location')
+        tool_update.amount = request.form['Amount']
+        tool_update.notes = request.form['Notes']
+        try:
+            db.session.commit()
+            return redirect('/tools')
+        except:
+            return "There was an issue updating that laptop 404 IM SO SORRY! I SUCK :("
+    else:
+        return render_template('update_tool.html', tool_update=tool_update)
 
-
+@main.route('/update_accessory/<int:id>', methods=['POST', 'GET'])
+@login_required
+def update_accessory(id):
+    accessory_update = Accessories.query.get_or_404(id)
+    if request.method == "POST":
+        accessory_update.name = request.form['Name']
+        accessory_update.type = request.form.get('Type')
+        accessory_update.manufactor = request.form['Manufacturer']
+        accessory_update.location = request.form.get('Location')
+        accessory_update.amount = request.form['Amount']
+        accessory_update.notes = request.form['Notes']
+        try:
+            db.session.commit()
+            return redirect('/accessories')
+        except:
+            return "There was an issue updating that laptop 404 IM SO SORRY! I SUCK :("
+    else:
+        return render_template('update_accessory.html', accessory_update=accessory_update)
 
 
 ########################## DELETE FUNCTIONS ##########################

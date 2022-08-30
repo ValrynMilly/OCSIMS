@@ -1,0 +1,111 @@
+{% extends "dashboard.html" %}
+<!-- Javascript imports, this page will be extended later on but I need some bootstrap functionality for update functionality -->
+
+{% block content %}
+ 
+<body>
+  <div class="container">
+        <div class="hero-body box box-shadow is-bold" style="background-color: #b857fd; height: 20pt;">
+          <div>
+            <a>
+              <img src="https://img.icons8.com/external-vitaliy-gorbachev-fill-vitaly-gorbachev/200/000000/external-keyboard-graphic-design-vitaliy-gorbachev-fill-vitaly-gorbachev.png" style="height: 40pt;"/>
+            </a>
+          </div>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <div>
+            <a>
+              <img src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/200/000000/external-headphones-appliances-kiranshastry-solid-kiranshastry.png" style="height: 40pt;"/>
+            </a>
+          </div>
+          <div class="container">
+              <p style="font-size: 30pt; color: white;">
+                Update {{tool_update.type}}
+              </p>
+          </div>
+          <div>
+            <a>
+              <img src="https://img.icons8.com/ios-filled/200/000000/hdmi-cable.png" style="height: 40pt;"/>
+            </a>
+          </div>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <div>
+            <a>
+              <img src="https://img.icons8.com/ios-filled/200/000000/monitor--v1.png" style="height: 40pt;"/>
+            </a>
+          </div>
+        </div>
+        <table class="is-fullwidth is-bordered">
+          <form action="/update_tool/{{tool_update.id}}" method="POST">
+            <section class="info-tiles">
+              <br>
+              <div class="box" style="font-family: sans-serif;">
+                <p class="subtitle" style="font-size: x-large; color: Black;">View / Edit everything about your selected Tool</p>
+              <div class="tile is-ancestor has-text-centered">
+                <a class="tile is-parent is-2">
+                  <article class="tile is-child box" style="width: 50pt; ">
+                    <p class="subtitle">Type</p>
+                    <div class="select is-multiple">
+                      <select multiple size="5" name="Type" required style="text-align: center; border-color: #b857fd;">
+                        <option>Hand Tool</option>
+                        <option>Electric Tool</option>
+                        <option>PC Tool</option>
+                        <option>Network Tool</option>
+                        <option>Tool Kit</option>
+                      </select>
+                    </div>
+                  </article>
+                </a>
+                <div>
+                  <a class="tile is-parent">
+                      <article class="tile is-child box">
+                        <p class="subtitle">Name</p>
+                        <input class="input is-narrow has-text-centered" type="text" placeholder="Name" name="Name" value="{{tool_update.name}}" style="height: 40pt; border-color: #b857fd;">
+                      </article>
+                  </a>
+                  <a class="tile is-parent">
+                    <article class="tile is-child box" style="width: 50pt;">
+                      <p class="subtitle">Manufacturer</p>
+                      <input class="input is-narrow has-text-centered" type="text" placeholder="Manufacturer" name="Manufacturer" value="{{tool_update.manufactor}}" style="height: 40pt; border-color: #b857fd;">
+                    </article>
+                  </a>
+                </div>
+                <div>
+                  <a class="tile is-parent">
+                      <article class="tile is-child box">
+                        <p class="subtitle">Location</p>
+                        <div class="select is-multiple">
+                          <select multiple size="3" name="Location" required style="text-align: center; border-color: #b857fd;">
+                            <option>OSS Office</option>
+                            <option>SAT Office</option>
+                            <option>OSS Cage</option>
+                          </select>
+                        </div>
+                      </article>
+                    </a>
+                    <a class="tile is-parent">
+                      <article class="tile is-child box" style="height: 60pt;">
+                        <p class="text" style="margin-top: -6pt;">Amount</p>
+                        <input class="input is-narrow has-text-centered" type="text" placeholder="Amount" name="Amount" value="{{tool_update.amount}}" style="height: 20pt; border-color: #b857fd;">
+                      </article>
+                  </a>
+                </div>
+                <a class="tile is-parent">
+                  <article class="tile is-child box">
+                    <p class="subtitle" style="margin-top: -6pt;">Notes</p>
+                    <input class="input is-narrow has-text-centered" type="text" placeholder="Notes" name="Notes" value="{{tool_update.notes}}" style="height:170pt; border-color: #b857fd;">
+                  </article>
+                </a>
+                <td>
+                  <br>
+                  <button class="button is-large is-primary is-narrow is-rounded">SAVE</button> 
+                </td>
+          </section> 
+          </form>
+        </table>
+      <br>   
+  </div>
+</body>
+</div>
+</html>
+
+{% endblock %}
