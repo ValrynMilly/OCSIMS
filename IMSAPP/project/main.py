@@ -8,7 +8,6 @@ from .models.site_models import *
 
 main = Blueprint('main', __name__)
 
-
 @main.route('/')
 def index():
     return render_template('index.html')
@@ -28,7 +27,8 @@ def dashboard():
     accessory_count = Accessories.query.with_entities(func.sum(Accessories.amount).label('total')).first().total
     site_objectives = Site_Objectives.query
     return render_template('dashboard.html',name=current_user.name, 
-    laptop_count=laptop_count, laptop_assigned=laptop_assigned, laptop_unassigned=laptop_unassigned, 
+    laptop_count=laptop_count, laptop_assigned=laptop_assigned, 
+    laptop_unassigned=laptop_unassigned, 
     desktop_count=desktop_count,
     tablet_count=tablet_count, 
     mobile_phone_count=mobile_phone_count,
@@ -323,7 +323,6 @@ def update_tablet(id):
             return "There was an issue updating that laptop 404 IM SO SORRY! I SUCK :("
     else:
         return render_template('update_tablet.html', tablet_update=tablet_update)
-
 
 @main.route('/update_mobile/<int:id>', methods=['POST', 'GET'])
 @login_required
