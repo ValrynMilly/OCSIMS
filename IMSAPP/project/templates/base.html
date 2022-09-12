@@ -63,6 +63,9 @@
                             <a href="{{ url_for('auth.login') }}" class="navbar-item" style="color: #9a41da;">
                                 Login
                             </a>
+                            <a href="{{ url_for('auth.login') }}" class="navbar-item" style="color: #9a41da;">
+                              Request Access
+                            </a>
                             <!--Another link can be added here for signup-->
                             {% endif %}
                             {% if current_user.is_authenticated %}
@@ -74,7 +77,6 @@
                     </div>
             </nav>
         </div>
-
         <div class="hero-body" style="font-family: sans-serif;">
             {% if current_user.is_authenticated %}
             <aside class="menu" style="margin-bottom: 10%;">

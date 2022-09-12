@@ -259,7 +259,7 @@ def accessories():
 def update_laptop(id):
     laptop_update = Laptops.query.get_or_404(id)
     if request.method == "POST":
-        laptop_update.model = request.form['Name']
+        laptop_update.name = request.form['Name']
         laptop_update.manufactor = request.form['Manufacturer']
         laptop_update.model = request.form['Model']
         laptop_update.cpu = request.form['CPU']
