@@ -1,3 +1,5 @@
+from google.cloud import datastore
+from google.cloud import storage
 from urllib import request
 from importlib import reload
 from flask import Blueprint, render_template, request, redirect, url_for
