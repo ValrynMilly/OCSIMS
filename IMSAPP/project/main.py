@@ -1,9 +1,12 @@
 from urllib import request
+import sys
 from importlib import reload
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user
 from sqlalchemy.sql import func
-from . import db
+
+from .__init__ import db
+
 from .models.site_models import *
 
 main = Blueprint('main', __name__)

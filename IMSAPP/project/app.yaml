@@ -1,10 +1,7 @@
-runtime: python
-env: flex
-entrypoint: gunicorn -b :$PORT main:app
+runtime: python310 
 
-runtime_config:
-  python_version: 3.7
-  pip_version: 22.1.1
+env_variables:
+  BUCKET_NAME: "example-gcs-bucket"
 
 manual_scaling:
   instances: 1
