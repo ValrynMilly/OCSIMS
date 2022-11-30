@@ -2,13 +2,13 @@ FROM python:3.8.5-slim-buster
 
 RUN mkdir /project
 
+COPY . /project
+
 WORKDIR /project
 
 COPY ./requirements.txt /project
 
 RUN pip install -r requirements.txt
-
-COPY . /project
 
 ENV FLASK_ENV 0
 

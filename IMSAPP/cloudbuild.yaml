@@ -7,7 +7,8 @@ steps:
   args: ['push', 'gcr.io/ocsims-359303/ocsimsapp']
 # Deploy container image to Cloud Run
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  entrypoint: gcloud
-  args: ['run', 'deploy', 'ocsimsapp', '--image', 'gcr.io/ocsims-359303/ocsimsapp', '--region', 'europe-west4', '--platform', 'managed', '--port', '4000']
+  args: ['gcloud', 'run', 'deploy', 'ocsimsapp', '--image=gcr.io/ocsims-359303/ocsimsapp', '--region', 'europe-west4', '--platform', 'managed', '--port', '4000']
 images:
 - gcr.io/ocsims-359303/ocsimsapp
+
+
