@@ -1,0 +1,13 @@
+steps:
+# Build the container image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/ocsims-359303/ocsims', '.']
+# Push the container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/ocsims-359303/ocsims']
+# Deploy container image to Cloud Run
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args: ['run', 'deploy', 'ocsimsapp', '--image', 'gcr.io/ocsims-359303/ocsims', '--region', 'europe-west4', '--port', '4000']
+images:
+- gcr.io/ocsims-359303/ocsims
