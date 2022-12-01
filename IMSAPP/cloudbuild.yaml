@@ -5,9 +5,9 @@ steps:
         'europe-west4-docker.pkg.dev/ocsims-359303/ocsimsapp:latest', 
         '.']
 # Push the container image to Container Registry
-- name: 'gcr.io/ocsims-359303/ocsimsapp:latest'
-  args: ['push', 'gcr.io/ocsims-359303/ocsimsapp']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/ocsims-359303/ocsimsapp:latest']
 
 # Deploy container image to Cloud Run
-- name: 'gcr.io/ocsims-359303/ocsimsapp:latest'
-  args: ['gcloud', 'run', 'deploy', 'ocsimsapp', '--image=gcr.io/ocsims-359303/ocsimsapp', '--region', 'europe-west4', '--platform', 'managed', '--port', '4000']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['gcloud', 'run', 'deploy', 'ocsimsapp', '--image=gcr.io/ocsims-359303/ocsimsapp:latest', '--region', 'europe-west4', '--platform', 'managed', '--port', '4000']
