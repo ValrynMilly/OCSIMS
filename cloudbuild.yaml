@@ -16,4 +16,6 @@ steps:
       "--platform",
       "managed",
       "--allow-unauthenticated",
+      '--port', 
+      '4000'
       ]
