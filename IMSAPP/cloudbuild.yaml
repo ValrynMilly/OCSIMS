@@ -1,13 +1,19 @@
 steps:
-# build & push the container image
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 
-        'europe-west4-docker.pkg.dev/ocsims-359303/ocsimsapp:latest', 
-        '.']
-# Push the container image to Container Registry
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/ocsims-359303/ocsimsapp:latest']
-
-# Deploy container image to Cloud Run
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['gcloud', 'run', 'deploy', 'ocsimsapp', '--image=gcr.io/ocsims-359303/ocsimsapp:latest', '--region', 'europe-west4', '--platform', 'managed', '--port', '4000']
+  - name: gcr.io/cloud-builders/docker
+    args: ["build", "-t", "gcr.io/ocsims-359303/ocsimsapp:latest", "."]
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "gcr.io/ocsims-359303/ocsimsapp:latest"]
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      [
+      "run",
+      "deploy",
+      "ocsimsapp",
+      "--image",
+      "gcr.io/ocsims-359303/ocsimsapp:latest",
+      "--region",
+      "europe-west4",
+      "--platform",
+      "managed",
+      "--allow-unauthenticated",
+      ]
