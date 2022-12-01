@@ -1,8 +1,9 @@
 steps:
 # build & push the container image
-- name: 'gcr.io/ocsims-359303/ocsimsapp:latest'
-  args: ['build', '-t', 'gcr.io/ocsims-359303/ocsimsapp', '.']
-
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 
+        'europe-west4-docker.pkg.dev/ocsims-359303/ocsimsapp:latest', 
+        '.']
 # Push the container image to Container Registry
 - name: 'gcr.io/ocsims-359303/ocsimsapp:latest'
   args: ['push', 'gcr.io/ocsims-359303/ocsimsapp']
